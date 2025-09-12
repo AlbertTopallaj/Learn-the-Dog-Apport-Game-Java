@@ -18,4 +18,23 @@ public class Items {
 
     }
 
+    public class stick {
 
+        String description = "En helt vanlig pinne";
+
+    }
+
+    public static void pickUpItem() {
+
+
+        String item;
+
+
+
+
+
+    }
+
+
+
+}
