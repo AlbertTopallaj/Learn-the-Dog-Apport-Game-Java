@@ -1,3 +1,3 @@
 public class Game {
-    //test kommentarh
+    //test kommentar
 }
