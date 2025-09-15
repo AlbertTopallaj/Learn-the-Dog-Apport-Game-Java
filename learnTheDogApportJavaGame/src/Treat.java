@@ -1,6 +1,7 @@
 public class Treat {
         public String name;
         public double effect;
+        public double baseEffect;
         public String description;
 
         public Treat(String name, double effect, String description) {
