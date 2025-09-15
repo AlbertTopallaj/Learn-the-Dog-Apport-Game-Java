@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f6fbba-6fdd-4f7e-a116-c6fb786e1933" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
+>>>>>>> 526006f75c17035744bcb01672b9f9e8053f067b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +36,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+<<<<<<< HEAD
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Johan/Documents/Programmering Java/Learn-the-Dog-Apport-Game-Java"
+=======
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java"
+>>>>>>> 526006f75c17035744bcb01672b9f9e8053f067b
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
