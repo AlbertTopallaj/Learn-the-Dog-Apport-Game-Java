@@ -15,6 +15,12 @@ public class Items {
     }
     public String getItem_name() {
 
+
+        System.out.print("hej")
+
+
+
+
         return item_name;
 
     }
