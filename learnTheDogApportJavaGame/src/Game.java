@@ -17,13 +17,13 @@ import java.util.ArrayList;
 
 public class Game {
     //___PUBLIC___
-    public boolean isWinTrue = false;   // will be change to private and make a set and get method.
+    public boolean isWin = false;                       // will be change to private and make a set and get method.
 
     //___PRIVATE___
     private final int inventorySpace = 10;
-    Items[] inventory = new Items[inventorySpace];  // All other
-    ArrayList<Map> maps = new ArrayList<>();        // All maps of the game.
-    ArrayList<Treat> treats = new ArrayList<>();    // Items that can be fed to dog, will be displayed in inventory in game
+    Items[] inventory = new Items[inventorySpace];          // All other items the player is carrying that are not edible.
+    ArrayList<Treat> treats = new ArrayList<>();            // Dog treats that the player carries, will be displayed in inventory in game.
+    ArrayList<Map> maps = new ArrayList<>();                // All maps of the game.
 
     //Will track the current state of the player in game.
     private enum PlayerStates {
@@ -41,18 +41,13 @@ public class Game {
     public String DisplayText(String outString) {
         String display = "";
 
-        while(currentState.equals(PlayerStates.MAIN))   //uses Enum states to determine what game logic to run
+        while(currentState.equals(PlayerStates.MAIN))       // Uses Enum states to determine what game logic to run
         {
             System.out.println("test test :O");
             display = "test test :)";
-            currentState = PlayerStates.EXIT; //NOTE: this is temporary
-            break; // will immediately exit while loop.
+            currentState = PlayerStates.EXIT;               // NOTE: this is temporary
+            break;                                          // will immediately exit while loop.
         }
-
         return display;
     }
-
-
-
-
 }
