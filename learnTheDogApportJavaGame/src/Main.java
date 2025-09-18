@@ -5,24 +5,21 @@ public class Main {
     public static void main(String[] args) {
 
 
-        List<Items> inventory = new ArrayList<>();
+        List<Item> inventory = new ArrayList<>();
 
-        Items stick = Items.GameItems.STICK;
+        Item stick = Item.GameItems.STICK;
 
-        Items.pickUpItem(stick, inventory);
+        Item.pickUpItem(stick, inventory);
 
-        Items clue = Items.GameItems.FEED_CLUE;
-        Items.pickUpItem(clue, inventory);
+        Item clue = Item.GameItems.FEED_CLUE;
+        Item.pickUpItem(clue, inventory);
 
         System.out.println("\nInventory innehåller:");
-        for(Items item : inventory){
+        for(Item item : inventory){
 
             System.out.println("- " + item.getItem_name() + ": " + item.getDescription());
 
         }
-
-
-
 
     }
 }

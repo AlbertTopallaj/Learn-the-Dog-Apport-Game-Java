@@ -1,4 +1,7 @@
-public class Treat {
+
+
+
+ public class Treat {
         public String name;
         public double effect;
         public String description;
@@ -9,4 +12,4 @@ public class Treat {
             this.description = description;
         }
     }
-}
+
