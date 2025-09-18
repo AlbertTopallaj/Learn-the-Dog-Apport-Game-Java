@@ -36,5 +36,18 @@ public class Dog {
                 System.out.println("Du misslyckades.");
                 return false;
             }
+
+            //Search funktion
+            public void search(search room) {
+                System.out.println("Du söker igenom rummet: " + room.getName());
+
+                if (room.getItems().isEmpty()) {
+                    System.out.println("Du hittar inget av intresse!");
+                } else {
+                    System.out.println("Du hittar följande saker:");
+                    for (Item item : room.getItems()) {
+                        System.out.println("- " + item.getName() + ": " + item.getDescription());
+                    }
+                }
         }
 }
