@@ -6,18 +6,30 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f6fbba-6fdd-4f7e-a116-c6fb786e1933" name="Changes" comment="">
 <<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Dog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Food.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Items$GameItems.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Items.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Map.class" beforeDir="false" />
 =======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
->>>>>>> 526006f75c17035744bcb01672b9f9e8053f067b
+>>>>>>> d1c9ba5a9737998f8f685c0c1482d1301335877d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,18 +44,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-<<<<<<< HEAD
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Johan/Documents/Programmering Java/Learn-the-Dog-Apport-Game-Java"
-=======
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java"
->>>>>>> 526006f75c17035744bcb01672b9f9e8053f067b
+    "last_opened_file_path": "C:/Users/altop/OneDrive/Desktop/javautvecklare/learnTheDogApportJavaGame",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
