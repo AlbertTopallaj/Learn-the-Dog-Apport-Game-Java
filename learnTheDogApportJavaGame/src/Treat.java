@@ -9,3 +9,4 @@ public class Treat {
             this.description = description;
         }
     }
+}
