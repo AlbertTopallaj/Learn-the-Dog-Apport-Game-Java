@@ -1,27 +1,27 @@
 
 public class Treat {
-        public String name;
-        public double effect;
-        public String description;
+    public String name;
+    public double effect;
+    public String description;
 
-        public treat(String name, double effect, String description) {
-            this.name = name;
-            this.effect = effect;
-            this.description = description;
-        }
+    public treat(String name, double effect, String description) {
+        this.name = name;
+        this.effect = effect;
+        this.description = description;
     }
 
-    public String getName(){
-    return name;
+    public String getName() {
+        return name;
     }
 
-    public double getEffect(){
-    return effect;
+    public double getEffect() {
+        return effect;
     }
 
-    public String getDescription(){
-    return description;
+    public String getDescription() {
+        return description;
     }
+}
 
     // ArrayList<String> treat = new ArrayList<>(10); <---- ska vara någon annanstans
 
