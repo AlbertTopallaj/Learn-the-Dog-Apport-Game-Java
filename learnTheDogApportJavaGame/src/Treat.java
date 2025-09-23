@@ -1,10 +1,10 @@
 
 public class Treat {
         public String name;
-        public double effect;
+        public int effect;
         public String description;
 
-        public treat(String name, double effect, String description) {
+        public Treat(String name, double effect, String description) {
             this.name = name;
             this.effect = effect;
             this.description = description;
@@ -14,15 +14,18 @@ public class Treat {
     return name;
     }
 
-    public double getEffect() {
+    public int getEffect() {
     return effect;
     }
 
     public String getDescription() {
     return description;
     }
-    }
 
+    public static Treat getTreat(String input) {
+            for()
+    }
+}
     // ArrayList<String> treat = new ArrayList<>(10); <---- ska vara någon annanstans
 
 /*
