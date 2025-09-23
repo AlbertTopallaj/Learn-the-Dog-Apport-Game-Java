@@ -1,10 +1,9 @@
-
 public class Treat {
         public String name;
         public int effect;
         public String description;
 
-        public Treat(String name, double effect, String description) {
+        public Treat(String name, int effect, String description) {
             this.name = name;
             this.effect = effect;
             this.description = description;
@@ -22,17 +21,18 @@ public class Treat {
     return description;
     }
 
-    public static Treat getTreat(String input) {
-            for()
+    public static Treat[] treatArray() {
+        new Treat(
+                "Morot",
+                1,
+                "En knaprig men ointressant belöning."
+        );
+        return new Treat[0];
     }
 }
     // ArrayList<String> treat = new ArrayList<>(10); <---- ska vara någon annanstans
 
 /*
-Morot
-Effekt: 1 poäng.
-Beskrivning: En knaprig men ointressant belöning.
-
 Biscuit
 Effekt: 3 poäng.
 Beskrivning: Klassisk hundkex. Smakar okej, ger få poäng
