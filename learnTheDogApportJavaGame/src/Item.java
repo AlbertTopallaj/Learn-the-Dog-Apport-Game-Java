@@ -18,6 +18,7 @@ public class Item {
     public String getItem_name() { return item_name; }
     public String getDescription() { return description; }
     public boolean canPickUp() { return canPickUp; }
+    public boolean isHidden()  { return isHidden; }
 
     // Statisk klass med alla spelobjekt
     public static class GameItems {
@@ -52,13 +53,6 @@ public class Item {
                 false
         );
 
-        public static final Item MEATBALL = new Item(
-                "Köttbulle 5g",
-                "En saftig köttbulle",
-                true,
-                false
-        );
-
         public static final Item DOGTOY = new Item(
 
                 "Hundleksak",
@@ -67,16 +61,6 @@ public class Item {
                 true
 
         );
-
-        public static final Item STEAK = new Item(
-
-                "Köttbit",
-                "En mumsig köttbit, perfekt för hunden",
-                true,
-                true
-
-        );
-
 
     }
 
