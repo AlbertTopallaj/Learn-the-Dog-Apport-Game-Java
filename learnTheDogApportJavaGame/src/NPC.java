@@ -1,10 +1,9 @@
 
 
 
-public class NPC {
+     public class NPC {
 
 
 
 
-
-}
+     }

@@ -21,7 +21,7 @@ public class Game {
 
     //___PRIVATE___
     private final int inventorySpace = 10;
-    Items[] inventory = new Items[inventorySpace];          // All other items the player is carrying that are not edible.
+    Item[] inventory = new Item[inventorySpace];          // All other items the player is carrying that are not edible.
     ArrayList<Treat> treats = new ArrayList<>();            // Dog treats that the player carries, will be displayed in inventory in game.
     ArrayList<Map> maps = new ArrayList<>();                // All maps of the game.
 
