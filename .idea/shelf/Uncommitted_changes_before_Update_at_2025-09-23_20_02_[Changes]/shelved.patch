@@ -1,0 +1,415 @@
+Index: learnTheDogApportJavaGame/src/Treat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\n// GÖMDA TREATS\r\n\r\n\r\n\r\n\r\n public class Treat {\r\n        public String name;\r\n        public double effect;\r\n        public String description;\r\n\r\n        public Treat(String name, double effect, String description) {\r\n            this.name = name;\r\n            this.effect = effect;\r\n            this.description = description;\r\n        }\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/learnTheDogApportJavaGame/src/Treat.java b/learnTheDogApportJavaGame/src/Treat.java
+--- a/learnTheDogApportJavaGame/src/Treat.java	(revision af7191294b56215f9d983b036a74d32ab5b505f8)
++++ b/learnTheDogApportJavaGame/src/Treat.java	(date 1758650550015)
+@@ -1,19 +1,67 @@
+-
+-
+-// GÖMDA TREATS
+-
+-
+-
+ 
+- public class Treat {
++public class Treat {
+         public String name;
+         public double effect;
+         public String description;
+ 
+-        public Treat(String name, double effect, String description) {
++        public treat(String name, double effect, String description) {
+             this.name = name;
+             this.effect = effect;
+             this.description = description;
+         }
++
++    public String getName() {
++    return name;
++    }
++
++    public double getEffect() {
++    return effect;
++    }
++
++    public String getDescription() {
++    return description;
++    }
+     }
+ 
++    // ArrayList<String> treat = new ArrayList<>(10); <---- ska vara någon annanstans
++
++/*
++Morot
++Effekt: 1 poäng.
++Beskrivning: En knaprig men ointressant belöning.
++
++Biscuit
++Effekt: 3 poäng.
++Beskrivning: Klassisk hundkex. Smakar okej, ger få poäng
++
++Hundfoder
++Effekt: 3 poäng.
++Beskrivning: Vanlig vardagsmat. Ger få poäng.
++
++Ben
++Effekt: 5 poäng.
++Beskrivning: Perfekt att tugga länge på. Ger mer poäng än vanliga treats.
++
++Köttbulle
++Effekt: 7 poäng.
++Beskrivning: En favorit! Ger bra poäng.
++
++Ostbit
++Effekt: 7 poäng.
++Beskrivning: Supergott! Ger bra poäng.
++
++Torkad lever
++Effekt: 10 poäng.
++Beskrivning: Lyxig och god belöning. Ger mycket poäng.
++
++Grisöra
++Effekt: 10 poäng.
++Beskrivning: En sällsynt godsak. Ger mycket poäng
++
++
++Specialgodis (gömd)
++Effekt: Dubblar dina poäng.
++Beskrivning: Hemlig belöning som bara dyker upp i speciella lägen.
++(boolean?)
++(isHidden?)
++ */
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02__Changes_.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02__Changes_.xml
+new file mode 100644
+--- /dev/null	(date 1758650536772)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02__Changes_.xml	(date 1758650536772)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]" date="1758096207049" recycled="true" deleted="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2025-09-17 10:02 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1758650536772)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch	(date 1758650536772)
+@@ -0,0 +1,102 @@
++Index: learnTheDogApportJavaGame/src/Treat.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+>public class Treat {\r\n        public String name;\r\n        public double effect;\r\n        public double baseEffect;\r\n        public String description;\r\n\r\n        public Treat(String name, double effect, String description) {\r\n            this.name = name;\r\n            this.effect = effect;\r\n            this.description = description;\r\n        }\r\n    }\r\n}\r\n
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++diff --git a/learnTheDogApportJavaGame/src/Treat.java b/learnTheDogApportJavaGame/src/Treat.java
++--- a/learnTheDogApportJavaGame/src/Treat.java	(revision 7d01cca64ffb0ec635dfca7f12d313ae89c0002f)
+++++ b/learnTheDogApportJavaGame/src/Treat.java	(date 1758021963637)
++@@ -1,7 +1,6 @@
++ public class Treat {
++         public String name;
++         public double effect;
++-        public double baseEffect;
++         public String description;
++ 
++         public Treat(String name, double effect, String description) {
++@@ -10,4 +9,5 @@
++             this.description = description;
++         }
++     }
++-}
+++// en till double som baseffekt
+++// en till konstruktor för olika variationer
++\ No newline at end of file
++Index: .idea/workspace.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e7f6fbba-6fdd-4f7e-a116-c6fb786e1933\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"32ZlmWmPDDiikEQNAwdtmYcts33\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e7f6fbba-6fdd-4f7e-a116-c6fb786e1933\" name=\"Changes\" comment=\"\" />\r\n      <created>1757636134642</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1757636134642</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++diff --git a/.idea/workspace.xml b/.idea/workspace.xml
++--- a/.idea/workspace.xml	(revision 7d01cca64ffb0ec635dfca7f12d313ae89c0002f)
+++++ b/.idea/workspace.xml	(date 1758021904889)
++@@ -1,9 +1,12 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <project version="4">
+++  <component name="AutoImportSettings">
+++    <option name="autoReloadType" value="SELECTIVE" />
+++  </component>
++   <component name="ChangeListManager">
++     <list default="true" id="e7f6fbba-6fdd-4f7e-a116-c6fb786e1933" name="Changes" comment="">
++       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
+++      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" afterDir="false" />
++     </list>
++     <option name="SHOW_DIALOG" value="false" />
++     <option name="HIGHLIGHT_CONFLICTS" value="true" />
++@@ -29,9 +32,23 @@
++     "git-widget-placeholder": "main",
++     "ignore.virus.scanning.warn.message": "true",
++     "kotlin-language-version-configured": "true",
++-    "last_opened_file_path": "C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java"
+++    "last_opened_file_path": "C:/Users/salis/Desktop/spel/Learn-the-Dog-Apport-Game-Java",
+++    "node.js.detected.package.eslint": "true",
+++    "node.js.detected.package.tslint": "true",
+++    "node.js.selected.package.eslint": "(autodetect)",
+++    "node.js.selected.package.tslint": "(autodetect)",
+++    "nodejs_package_manager_path": "npm",
+++    "vue.rearranger.settings.migration": "true"
++   }
++ }]]></component>
+++  <component name="SharedIndexes">
+++    <attachedChunks>
+++      <set>
+++        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+++        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+++      </set>
+++    </attachedChunks>
+++  </component>
++   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++   <component name="TaskManager">
++     <task active="true" id="Default" summary="Default task">
++@@ -40,7 +57,25 @@
++       <option name="number" value="Default" />
++       <option name="presentableId" value="Default" />
++       <updated>1757636134642</updated>
+++      <workItem from="1757964897080" duration="2052000" />
+++      <workItem from="1757968796321" duration="2275000" />
++     </task>
+++    <task id="LOCAL−00001" summary="test commit">
+++      <option name="closed" value="true" />
+++      <created>1757969577141</created>
+++      <option name="number" value="LOCAL−00001" />
+++      <option name="presentableId" value="LOCAL−00001" />
+++      <updated>1757969577141</updated>
+++    </task>
+++    <option name="localTasksCounter" value="2" />
++     <servers />
++   </component>
+++  <component name="TypeScriptGeneratedFilesManager">
+++    <option name="version" value="3" />
+++  </component>
+++  <component name="VcsManagerConfiguration">
+++    <MESSAGE value="Hej på dig" />
+++    <MESSAGE value="test commit" />
+++    <option name="LAST_COMMIT_MESSAGE" value="test commit" />
+++  </component>
++ </project>
++\ No newline at end of file
+Index: learnTheDogApportJavaGame/src/Map.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att spara varje sak till tillhörande plats?\r\n    public String name;\r\n    public String description;\r\n\r\n    Map(String name, String description) {\r\n        this.name = name;\r\n        this.description = description;\r\n    }\r\n\r\n    public static Map[] locations = { // array med varje plats tillgänglig i spelet\r\n            new Map(\r\n                    \"park\",\r\n                    \"Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden.\"\r\n            ),\r\n\r\n            new Map(\"kiosk\",\r\n                    \"Du står vid en välskött kiosk. Den är öppen och en man står bakom disken och ser uttråkad ut.\"\r\n            )\r\n    };\r\n\r\n    public static Map getLocation(String locationInput) { // metod för att skicka ut den plats som spelaren vill gå till\r\n        for (Map location : locations) {\r\n            if (location.name.equals(locationInput.toLowerCase())) { // söker efter platsnamn och skickar ut objektet som matchar från arrayen till spelet\r\n                return location;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/learnTheDogApportJavaGame/src/Map.java b/learnTheDogApportJavaGame/src/Map.java
+--- a/learnTheDogApportJavaGame/src/Map.java	(revision af7191294b56215f9d983b036a74d32ab5b505f8)
++++ b/learnTheDogApportJavaGame/src/Map.java	(date 1758650536775)
+@@ -1,21 +1,80 @@
++import java.util.ArrayList;
++import java.util.Arrays;
++
+ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att spara varje sak till tillhörande plats?
+-    public String name;
+-    public String description;
++    private final String name;
++    private final String description;
++    private ArrayList<Item> items;
++    private ArrayList<Treat> treats;
++    private ArrayList<NPC> NPCs;
+ 
+-    Map(String name, String description) {
++    Map(String name, String description, ArrayList<Item> items, ArrayList<Treat> treats, ArrayList<NPC> NPCs) {
+         this.name = name;
+         this.description = description;
++        this.items = items;
++        this.treats = treats;
++        this.NPCs = NPCs;
+     }
+ 
+     public static Map[] locations = { // array med varje plats tillgänglig i spelet
++            new Map(
++                    "hemma",
++                    "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(Arrays.asList(
++                            new Treat("Grisöra", 10, "En sällsynt godsak. Ger mycket poäng.")
++                    )),
++                    new ArrayList<NPC>()
++            ),
++
++            new Map(
++                    "trädgård",
++                    "Din inhägnade lilla trädgård utanför ditt hus. Fina blommor och buskar pryder trädgården.",
++                    new ArrayList<Item>(Arrays.asList(
++                            new Item("Pinne", "En helt vanlig pinne", true)
++                    )),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
++            ),
++
+             new Map(
+                     "park",
+-                    "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden."
++                    "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
+             ),
+ 
+             new Map("kiosk",
+-                    "Du står vid en välskött kiosk. Den är öppen och en man står bakom disken och ser uttråkad ut."
+-            )
++                    "Du står vid en välskött kiosk. Den är öppen och en man står bakom disken och ser uttråkad ut.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
++            ),
++
++            new Map(
++                    "parkeringsplats",
++                    "En asfalterad parkeringsplats intill parken med ett par parkerade bilar.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
++            ),
++
++            new Map(
++                    "badplats",
++                    "En liten strand vid en sjö ligger vid parkens bortre ände.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
++            ),
++
++            new Map(
++                    "skogsstig",
++                    "En smal stig slingrar sig in i en skog jämte parken. Här kanske man kan hitta en bra pinne.",
++                    new ArrayList<Item>(),
++                    new ArrayList<Treat>(),
++                    new ArrayList<NPC>()
++            ),
+     };
+ 
+     public static Map getLocation(String locationInput) { // metod för att skicka ut den plats som spelaren vill gå till
+@@ -26,4 +85,15 @@
+         }
+         return null;
+     }
++
++    /*
++     * spånar lite på hur man tar bort ett item från arrayen ovan när det plockas upp.
++     *
++    public static void removeItemFromLocation(Map currentLocation, Item item) {
++        currentLocation.items.remove(item);
++    }
++    public static void removeTreatFromLocation(Map currentLocation, Treat treat) {
++        currentLocation.treats.remove(treat);
++    }
++    */
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e7f6fbba-6fdd-4f7e-a116-c6fb786e1933\" name=\"Changes\" comment=\"\">\r\n<<<<<<< HEAD\r\n      <change afterPath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Dog.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Food.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Items$GameItems.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Items.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Map.class\" beforeDir=\"false\" />\r\n=======\r\n      <change beforePath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java\" afterDir=\"false\" />\r\n>>>>>>> d1c9ba5a9737998f8f685c0c1482d1301335877d\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"32ZlmWmPDDiikEQNAwdtmYcts33\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/altop/OneDrive/Desktop/javautvecklare/learnTheDogApportJavaGame\",\r\n    \"settings.editor.selected.configurable\": \"preferences.keymap\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e7f6fbba-6fdd-4f7e-a116-c6fb786e1933\" name=\"Changes\" comment=\"\" />\r\n      <created>1757636134642</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1757636134642</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision af7191294b56215f9d983b036a74d32ab5b505f8)
++++ b/.idea/workspace.xml	(date 1758650536774)
+@@ -6,6 +6,12 @@
+   <component name="ChangeListManager">
+     <list default="true" id="e7f6fbba-6fdd-4f7e-a116-c6fb786e1933" name="Changes" comment="">
+ <<<<<<< HEAD
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02_[Changes]/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-09-17_10_02__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" afterDir="false" />
++=======
++<<<<<<< HEAD
+       <change afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Items.java" afterDir="false" />
+@@ -18,6 +24,7 @@
+ =======
+       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
+ >>>>>>> d1c9ba5a9737998f8f685c0c1482d1301335877d
++>>>>>>> afc0e6506d402eca883aeef5a8ecd21f8c56d451
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -42,6 +49,33 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
++<<<<<<< HEAD
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  }
++}</component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
++        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
++      </set>
++    </attachedChunks>
++  </component>
++=======
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+     "Application.Main.executor": "Run",
+@@ -53,6 +87,7 @@
+     "settings.editor.selected.configurable": "preferences.keymap"
+   }
+ }]]></component>
++>>>>>>> afc0e6506d402eca883aeef5a8ecd21f8c56d451
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -61,7 +96,12 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1757636134642</updated>
++      <workItem from="1758221621661" duration="1292000" />
++      <workItem from="1758223384887" duration="1503000" />
+     </task>
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+ </project>
+\ No newline at end of file
