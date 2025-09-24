@@ -12,16 +12,35 @@ import java.util.Random;
 // happiness + randomMagicNumberFactor > winThreshold -> win game.
 
 public class Dog {
-    public static boolean main(String[] args) {
+    public static boolean dog(String[] args) {
+    }
 
-        ArrayList<String> Food = new ArrayList<String>();
+        //ArrayList<String> Food = new ArrayList<String>();
+        static int apportThresholdTry = 15; // Minimum för att försöka apport
+        static Random rn = new Random(); //Genrera ett random nummer
+        static int randomMagicNumberFactor = rn.nextInt(10) + 1;
+        static int happiness;
 
-        public void addFood(String String item;) {
-            Food.add(item);
-            System.out.println(item + " har ätits upp.");
+
+        public static void addFood(String String) {
+            //Food.add(item);
+            //System.out.println(item + " har ätits upp.");
+            happiness += Treat.getEffect();
         }
 
-        public static boolean apportTry(ArrayList<String> Food) {
+        public static boolean winThreshold() {
+            if (rn + happiness > apportThresholdTry){
+                System.out.println("Hunden lyckades med apport!");
+                return true;
+            } else {
+                System.out.println("Tyvärr så lyckades du inte att få hunden att hämta pinnen");
+                return false;
+            }
+
+        }
+}
+
+        /*public static boolean apportTry(ArrayList<String> Food) {
             // Om listan är tom, går det inte att lyckas
             if (Food.isEmpty()) {
                 System.out.println("För hungrig för att lyckas!");
@@ -44,7 +63,7 @@ public class Dog {
                 System.out.println("Du misslyckades.");
                 return false;
             }
-
+        */
             //Search funktion
             public void search(search room) {
                 System.out.println("Du söker igenom rummet: " + room.getName());
