@@ -1,12 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Item {
 
     // HIDDEN ITEMS - LÖST, SÅVIDA INTE ANNAT SÄGS.
 
-
     // GÖR EN ARRAY
 
     // RETURNERA BEROENDE PÅ
-
 
     private String item_name;
     private String description;
@@ -51,14 +53,14 @@ public class Item {
 
         ),
 
-        public static final Item STICK = new Item(
+      new Item(
                 "Pinne",
                 "En helt vanlig pinne",
                 true,
                 false
         ),
 
-        public static final Item DOGTOY = new Item(
+         new Item(
 
                 "Hundleksak",
                 "En leksak som kan få hunden på gott humör",
@@ -67,8 +69,29 @@ public class Item {
 
         ),
 
-    } // Gör en funktion som tar in en string på item och gör sedan return på itemet genom listan
+    };// Gör en funktion som tar in en string på item och gör sedan return på itemet genom listan
 // if item namn är lika med användarens input så kommer det itemet hamna i inventory
+
+    public static List<Item> inventory = new ArrayList<>();
+
+    public static void searchItem(){
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Skriv namnet på item som du vill plocka upp: ");
+        String itemPickup = scan.nextLine();
+
+        for (Item item : items) {
+
+            if (item.getItem_name().equalsIgnoreCase(itemPickup)){
+
+                inventory.add(item);
+                System.out.println(item + " har lagt till i ditt inventory");
+                return;
+
+            }
+        }
+    }
 
     // Metod för att plocka upp item
     public static void pickUpItem(Item item, java.util.List<Item> inventory){
