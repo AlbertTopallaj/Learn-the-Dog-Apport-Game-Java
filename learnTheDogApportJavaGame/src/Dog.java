@@ -46,8 +46,9 @@ public class Dog {
                 System.out.println("Du hittar inget av intresse!");
             } else {
                 System.out.println("Du hittar följande saker:");
-                for (Map.items == true) ; {
+                for (Item i : Map.items); {
                     System.out.println("- " + Map.items + ": " + Map.description);
+                }
                 }
             }
 
@@ -60,7 +61,7 @@ public class Dog {
                     System.out.println("Du hittar inget av intresse!");
                 } else {
                     System.out.println("Du hittar följande saker:");
-                    for (Map.items == true) ; {
+                    for (Treat treat : Map.treats) ; {
                         System.out.println("- " + Map.treats + ": " + Map.description);
                     }
                 }
