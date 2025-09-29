@@ -75,10 +75,12 @@ public class Treat {
                 ),
                 new Treat(
                         "Special godis",
-                        0,
+                        2,
                         "Hemlig belöning som bara dyker upp i speciella lägen. Dubblar  dina poäng och ditt ego!",
                         true
                 ),
         }; // Hur dubblar jag poängen som int?
     }
 }
+
+

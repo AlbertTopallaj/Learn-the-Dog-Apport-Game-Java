@@ -49,8 +49,6 @@ public class Item {
           "Kommandot apport är något älskar att utföra. Men alla hundar kan inte det. Hur ska du lösa det?",
                 false,
                 true
-
-
         ),
 
       new Item(
@@ -66,31 +64,21 @@ public class Item {
                 "En leksak som kan få hunden på gott humör",
                 true,
                 true
-
         ),
 
     };// Gör en funktion som tar in en string på item och gör sedan return på itemet genom listan
 // if item namn är lika med användarens input så kommer det itemet hamna i inventory
 
-    public static List<Item> inventory = new ArrayList<>();
-
-    public static void searchItem(){
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Skriv namnet på item som du vill plocka upp: ");
-        String itemPickup = scan.nextLine();
-
+    public static Item getItem(String itemInput){ // Användaren skriver in itemets namn och plockar då om det
+        // Ta in en string, returnera item från rätt lista
         for (Item item : items) {
+            if (item.getItem_name().equals(itemInput.toLowerCase())) {
 
-            if (item.getItem_name().equalsIgnoreCase(itemPickup)){
-
-                inventory.add(item);
-                System.out.println(item + " har lagt till i ditt inventory");
-                return;
+                return item;
 
             }
         }
+        return null;
     }
 
     // Metod för att plocka upp item
