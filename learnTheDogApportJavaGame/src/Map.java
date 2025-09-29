@@ -44,7 +44,7 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
         return NPCs;
     }
 
-    /*public static Map[] locations = { // array med varje plats tillgänglig i spelet
+    public static Map[] locations = { // array med varje plats tillgänglig i spelet
             new Map(
                     "hemma",
                     "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
@@ -112,7 +112,7 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
             }
         }
         return null;
-    }*/
+    }
 
     /*
      * spånar lite på hur man tar bort ett item från arrayen ovan när det plockas upp.
