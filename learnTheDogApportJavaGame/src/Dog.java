@@ -65,14 +65,14 @@ public class Dog {
             }
         */
             //Search funktion
-            public void search(search room) {
-                System.out.println("Du söker igenom rummet: " + room.getName());
+            static void search(String string) {
+                System.out.println("Du söker igenom rummet: " + Map.locations);
 
-                if (room.getItems().isEmpty()) {
+                if (Map.locations == null) {
                     System.out.println("Du hittar inget av intresse!");
                 } else {
                     System.out.println("Du hittar följande saker:");
-                    for (Item item : room.getItems()) {
+                    for (Map.locations == true) {
                         System.out.println("- " + item.getName() + ": " + item.getDescription());
                     }
                 }
