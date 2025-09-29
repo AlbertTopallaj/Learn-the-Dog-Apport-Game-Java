@@ -1,6 +1,6 @@
 public class Treat {
     public String name;
-    public int effect;
+    public static int effect;
     public String description;
     public boolean isHidden;
 
@@ -15,7 +15,7 @@ public class Treat {
         return name;
     }
 
-    public int getEffect() {
+    public static int getEffect() {
         return effect;
     }
 
@@ -75,10 +75,12 @@ public class Treat {
                 ),
                 new Treat(
                         "Special godis",
-                        0,
+                        2,
                         "Hemlig belöning som bara dyker upp i speciella lägen. Dubblar  dina poäng och ditt ego!",
                         true
                 ),
         }; // Hur dubblar jag poängen som int?
     }
 }
+
+

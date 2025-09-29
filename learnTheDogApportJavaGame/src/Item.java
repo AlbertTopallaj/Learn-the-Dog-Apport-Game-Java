@@ -15,91 +15,80 @@ public class Item {
     private boolean canPickUp;
     private boolean isHidden;
 
-    public Item(String item_name, String description, boolean canPickUp, boolean isHidden){
+    public Item(String item_name, String description, boolean canPickUp, boolean isHidden) {
         this.item_name = item_name;
         this.description = description;
         this.canPickUp = canPickUp;
         this.isHidden = isHidden;
     }
 
-    public String getItem_name() { return item_name; }
-    public String getDescription() { return description; }
-    public boolean canPickUp() { return canPickUp; }
-    public boolean isHidden()  { return isHidden; }
+    public String getItem_name() {
+        return item_name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean canPickUp() {
+        return canPickUp;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
 
     // Statisk klass med alla spelobjekt
     public static Item[] items = {
-       new Item(
-                "ledtråd_mata",
-                "Hunden är hungrig, testa att mata hunden med något gott!",
-                false,
-                false
-        ),
+            new Item(
+                    "ledtråd_mata",
+                    "Hunden är hungrig, testa att mata hunden med något gott!",
+                    false,
+                    false
+            ),
 
-       new Item(
-                "ledtråd_köttbullar",
-                "Hunden älskar köttbullar, Tant Agda brukar ha de.",
-                false,
-                false
-        ),
+            new Item(
+                    "ledtråd_köttbullar",
+                    "Hunden älskar köttbullar, Tant Agda brukar ha de.",
+                    false,
+                    false
+            ),
 
-         new Item(
+            new Item(
 
-          "ledtråd_apport",
-          "Kommandot apport är något älskar att utföra. Men alla hundar kan inte det. Hur ska du lösa det?",
-                false,
-                true
+                    "ledtråd_apport",
+                    "Kommandot apport är något älskar att utföra. Men alla hundar kan inte det. Hur ska du lösa det?",
+                    false,
+                    true
+            ),
 
+            new Item(
+                    "Pinne",
+                    "En helt vanlig pinne",
+                    true,
+                    false
+            ),
 
-        ),
+            new Item(
 
-      new Item(
-                "Pinne",
-                "En helt vanlig pinne",
-                true,
-                false
-        ),
-
-         new Item(
-
-                "Hundleksak",
-                "En leksak som kan få hunden på gott humör",
-                true,
-                true
-
-        ),
+                    "Hundleksak",
+                    "En leksak som kan få hunden på gott humör",
+                    true,
+                    true
+            ),
 
     };// Gör en funktion som tar in en string på item och gör sedan return på itemet genom listan
 // if item namn är lika med användarens input så kommer det itemet hamna i inventory
 
-    public static List<Item> inventory = new ArrayList<>();
-
-    public static void searchItem(){
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Skriv namnet på item som du vill plocka upp: ");
-        String itemPickup = scan.nextLine();
-
+    public static Item getItem(String itemInput) { // Användaren skriver in itemets namn och plockar då om det
+        // Ta in en string, returnera item från rätt lista
         for (Item item : items) {
+            if (item.getItem_name().equals(itemInput.toLowerCase())) {
 
-            if (item.getItem_name().equalsIgnoreCase(itemPickup)){
-
-                inventory.add(item);
-                System.out.println(item + " har lagt till i ditt inventory");
-                return;
+                return item;
 
             }
         }
-    }
-
-    // Metod för att plocka upp item
-    public static void pickUpItem(Item item, java.util.List<Item> inventory){
-        if(item.canPickUp()){
-            inventory.add(item);
-            System.out.println("Plockade upp: "+ item.getItem_name());
-        } else {
-            System.out.println("Kan inte plocka upp detta föremål");
-        }
+        return null;
     }
 }
