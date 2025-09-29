@@ -15,80 +15,55 @@ public class Dog {
     public static boolean dog(String[] args) {
     }
 
-        //ArrayList<String> Food = new ArrayList<String>();
-        static int apportThresholdTry = 15; // Minimum för att försöka apport
-        static Random rn = new Random(); //Genrera ett random nummer
-        static int randomMagicNumberFactor = rn.nextInt(10) + 1;
-        static int happiness;
+    //ArrayList<String> Food = new ArrayList<String>();
+    static int apportThresholdTry = 15; // Minimum för att försöka apport
+    static Random rn = new Random(); //Genrera ett random nummer
+    static int randomMagicNumberFactor = rn.nextInt(10) + 1;
+    static int happiness;
 
 
-        public static void addFood(String String) {
-            //Food.add(item);
-            //System.out.println(item + " har ätits upp.");
-            happiness += Treat.getEffect();
+    public static void addFood(String String) {
+        happiness += Treat.getEffect();
+    }
+
+    public static boolean winThreshold() {
+        if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
+            System.out.println("Hunden lyckades med apport!");
+            return true;
+        } else {
+            System.out.println("Tyvärr så lyckades du inte att få hunden att hämta pinnen");
+            return false;
         }
 
-        public static boolean winThreshold() {
-            if ((randomMagicNumberFactor + happiness) > apportThresholdTry){
-                System.out.println("Hunden lyckades med apport!");
-                return true;
+    }
+
+
+        //Search funktion för items
+        public static void searchItem(Map map) {
+            System.out.println("Du söker igenom rummet");
+
+            if (Map.items == null) {
+                System.out.println("Du hittar inget av intresse!");
             } else {
-                System.out.println("Tyvärr så lyckades du inte att få hunden att hämta pinnen");
-                return false;
-            }
-
-        }
-}
-
-        /*public static boolean apportTry(ArrayList<String> Food) {
-            // Om listan är tom, går det inte att lyckas
-            if (Food.isEmpty()) {
-                System.out.println("För hungrig för att lyckas!");
-                return false;
-            }
-
-            double successChance = (double) Food.size() / 10.0;
-
-            if (successChance > 1.0) {
-                successChance = 1.0;
-            }
-
-            Random random = new Random();
-            double randomValue = random.nextDouble();
-
-            if (randomValue < successChance) {
-                System.out.println("Du lyckades!");
-                return true;
-            } else {
-                System.out.println("Du misslyckades.");
-                return false;
-            }
-        */
-            //Search funktion för items
-            public static void searchItem(Map map) {
-                System.out.println("Du söker igenom rummet");
-
-                if (Map.items() == null) {
-                    System.out.println("Du hittar inget av intresse!");
-                } else {
-                    System.out.println("Du hittar följande saker:");
-                    for (Map.items() == true); {
-                        System.out.println("- " + Map.items() + ": " + Map.description());
-                    }
+                System.out.println("Du hittar följande saker:");
+                for (Map.items == true) ; {
+                    System.out.println("- " + Map.items + ": " + Map.description);
                 }
-        }
+            }
+
+
             // Search funktion för treats
             public static void searchTreat(Map map) {
                 System.out.println("Du söker igenom rummet");
 
-                if (Map.treats() == null) {
+                if (Map.treats == null) {
                     System.out.println("Du hittar inget av intresse!");
                 } else {
                     System.out.println("Du hittar följande saker:");
-                    for (Map.treats() == true); {
-                        System.out.println("- " + Map.treats() + ": " + Map.description());
-
-}
-
-
-    //gör en liknande för treats me
+                    for (Map.items == true) ; {
+                        System.out.println("- " + Map.treats + ": " + Map.description);
+                    }
+                }
+            }
+        }
+        //gör en liknande för treats me
