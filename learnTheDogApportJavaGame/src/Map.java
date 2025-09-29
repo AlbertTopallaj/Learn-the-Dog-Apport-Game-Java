@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att spara varje sak till tillhörande plats?
-    private final String name;
-    private final String description;
-    private ArrayList<Item> items;
-    private ArrayList<Treat> treats;
-    private ArrayList<NPC> NPCs;
+    public final String name;
+    public static final String description;
+    public static ArrayList<Item> items;
+    public static ArrayList<Treat> treats;
+    public ArrayList<NPC> NPCs;
 
     Map(String name, String description, ArrayList<Item> items, ArrayList<Treat> treats, ArrayList<NPC> NPCs) {
         this.name = name;

@@ -1,6 +1,6 @@
 public class Treat {
     public String name;
-    public int effect;
+    public static int effect;
     public String description;
     public boolean isHidden;
 
@@ -15,7 +15,7 @@ public class Treat {
         return name;
     }
 
-    public int getEffect() {
+    public static int getEffect() {
         return effect;
     }
 
