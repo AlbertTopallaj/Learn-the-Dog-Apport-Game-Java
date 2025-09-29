@@ -29,7 +29,7 @@ public class Dog {
         }
 
         public static boolean winThreshold() {
-            if (rn + happiness > apportThresholdTry){
+            if ((randomMagicNumberFactor + happiness) > apportThresholdTry){
                 System.out.println("Hunden lyckades med apport!");
                 return true;
             } else {
