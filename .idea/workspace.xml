@@ -4,28 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea6a9e0e-a0e7-4e06-9afc-c775432137d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="f0538cd2-d2ae-4630-b310-bc7347786e4a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GabrielElLouah&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AlbertTopallaj/Learn-the-Dog-Apport-Game-Java.git&quot;,
+    &quot;accountId&quot;: &quot;55990bf7-1101-4150-8a32-5a971457ebc6&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.2+12-54/lib/src.zip!/java.base/java/lang/String.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="33LoAjaU6VTdUhTcnEBcxR2V648" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.excludes"
+  }
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ea6a9e0e-a0e7-4e06-9afc-c775432137d3" name="Changes" comment="" />
-      <created>1759102367449</created>
+      <changelist id="f0538cd2-d2ae-4630-b310-bc7347786e4a" name="Changes" comment="" />
+      <created>1759105784391</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1759102367449</updated>
+      <updated>1759105784391</updated>
     </task>
     <servers />
   </component>

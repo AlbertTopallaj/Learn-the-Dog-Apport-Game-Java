@@ -1,3 +1,4 @@
+import javax.lang.model.element.Name;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,6 +9,12 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
     private ArrayList<Treat> treats;
     private ArrayList<NPC> NPCs;
 
+    Map(String name, String description, ArrayList<Item> items) {
+        this.name = name;
+        this.description = description;
+        this.items = items;
+    }
+
     Map(String name, String description, ArrayList<Item> items, ArrayList<Treat> treats, ArrayList<NPC> NPCs) {
         this.name = name;
         this.description = description;
@@ -16,7 +23,28 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
         this.NPCs = NPCs;
     }
 
-    public static Map[] locations = { // array med varje plats tillgänglig i spelet
+    public String getName()
+    {
+        return name;
+    }
+    public String getDescription()
+    {
+        return description;
+    }
+    public ArrayList<Item> getItems()
+    {
+        return items;
+    }
+    public ArrayList<Treat> getTreats()
+    {
+        return treats;
+    }
+    public ArrayList<NPC> getNPCs()
+    {
+        return NPCs;
+    }
+
+    /*public static Map[] locations = { // array med varje plats tillgänglig i spelet
             new Map(
                     "hemma",
                     "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
@@ -84,7 +112,7 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
             }
         }
         return null;
-    }
+    }*/
 
     /*
      * spånar lite på hur man tar bort ett item från arrayen ovan när det plockas upp.
