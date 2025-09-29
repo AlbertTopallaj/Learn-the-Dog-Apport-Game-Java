@@ -64,17 +64,31 @@ public class Dog {
                 return false;
             }
         */
-            //Search funktion
-            static void search(String string) {
-                System.out.println("Du söker igenom rummet: " + Map.locations);
+            //Search funktion för items
+            public static void searchItem(Map map) {
+                System.out.println("Du söker igenom rummet");
 
-                if (Map.locations == null) {
+                if (Map.items() == null) {
                     System.out.println("Du hittar inget av intresse!");
                 } else {
                     System.out.println("Du hittar följande saker:");
-                    for (Map.locations == true) {
-                        System.out.println("- " + item.getName() + ": " + item.getDescription());
+                    for (Map.items() == true); {
+                        System.out.println("- " + Map.items() + ": " + Map.description());
                     }
                 }
         }
+            // Search funktion för treats
+            public static void searchTreat(Map map) {
+                System.out.println("Du söker igenom rummet");
+
+                if (Map.treats() == null) {
+                    System.out.println("Du hittar inget av intresse!");
+                } else {
+                    System.out.println("Du hittar följande saker:");
+                    for (Map.treats() == true); {
+                        System.out.println("- " + Map.treats() + ": " + Map.description());
+
 }
+
+
+    //gör en liknande för treats me
