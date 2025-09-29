@@ -12,21 +12,20 @@ import java.util.Random;
 // happiness + randomMagicNumberFactor > winThreshold -> win game.
 
 public class Dog {
-    public static boolean dog(String[] args) {
-    }
+
 
     //ArrayList<String> Food = new ArrayList<String>();
-    static int apportThresholdTry = 15; // Minimum för att försöka apport
-    static Random rn = new Random(); //Genrera ett random nummer
-    static int randomMagicNumberFactor = rn.nextInt(10) + 1;
-    static int happiness;
+    int apportThresholdTry = 15; // Minimum för att försöka apport
+    Random rn = new Random(); //Genrera ett random nummer
+    int randomMagicNumberFactor = rn.nextInt(10) + 1;
+    int happiness;
 
 
-    public static void addFood(String String) {
+    public void addFood(String String) {
         happiness += Treat.getEffect();
     }
 
-    public static boolean winThreshold() {
+    public boolean winThreshold() {
         if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
             System.out.println("Hunden lyckades med apport!");
             return true;
@@ -39,7 +38,7 @@ public class Dog {
 
 
         //Search funktion för items
-        public static void searchItem(Map map) {
+        public void searchItem(Map map) {
             System.out.println("Du söker igenom rummet");
 
             if (Map.items == null) {
@@ -54,7 +53,7 @@ public class Dog {
 
 
             // Search funktion för treats
-            public static void searchTreat(Map map) {
+            public void searchTreat(Map map) {
                 System.out.println("Du söker igenom rummet");
 
                 if (Map.treats == null) {
