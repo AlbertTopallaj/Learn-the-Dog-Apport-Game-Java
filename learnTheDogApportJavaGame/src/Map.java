@@ -1,10 +1,9 @@
-import javax.lang.model.element.Name;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att spara varje sak till tillhörande plats?
-    public final String name;
-    public static final String description;
+public class Map {
+    public String name;
+    public static String description;
     public static ArrayList<Item> items;
     public static ArrayList<Treat> treats;
     public ArrayList<NPC> NPCs;
@@ -49,18 +48,14 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
                     "hemma",
                     "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(Arrays.asList(
-                            new Treat("Grisöra", 10, "En sällsynt godsak. Ger mycket poäng.")
-                    )),
-                    new ArrayList<NPC>()
+                    new ArrayList<Treat>(), //kan inte fylla Treats ännu, saknar funktion som returnar ett specifikt treat. Just nu returnas bara hela arrayen.
+                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kent")))
             ),
 
             new Map(
                     "trädgård",
                     "Din inhägnade lilla trädgård utanför ditt hus. Fina blommor och buskar pryder trädgården.",
-                    new ArrayList<Item>(Arrays.asList(
-                            new Item("Pinne", "En helt vanlig pinne", true)
-                    )),
+                    new ArrayList<Item>(Arrays.asList(Item.getItem("Hundleksak"))),
                     new ArrayList<Treat>(),
                     new ArrayList<NPC>()
             ),
@@ -68,9 +63,9 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
             new Map(
                     "park",
                     "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden.",
-                    new ArrayList<Item>(),
+                    new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
                     new ArrayList<Treat>(),
-                    new ArrayList<NPC>()
+                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Agneta")))
             ),
 
             new Map("kiosk",
@@ -85,7 +80,7 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
                     "En asfalterad parkeringsplats intill parken med ett par parkerade bilar.",
                     new ArrayList<Item>(),
                     new ArrayList<Treat>(),
-                    new ArrayList<NPC>()
+                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Gunnar")))
             ),
 
             new Map(
@@ -93,15 +88,15 @@ public class Map { // även lägga till Items/Treat/NPC-objektarrayer för att s
                     "En liten strand vid en sjö ligger vid parkens bortre ände.",
                     new ArrayList<Item>(),
                     new ArrayList<Treat>(),
-                    new ArrayList<NPC>()
+                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kurt")))
             ),
 
             new Map(
                     "skogsstig",
                     "En smal stig slingrar sig in i en skog jämte parken. Här kanske man kan hitta en bra pinne.",
-                    new ArrayList<Item>(),
+                    new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
                     new ArrayList<Treat>(),
-                    new ArrayList<NPC>()
+                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Glenn")))
             ),
     };
 
