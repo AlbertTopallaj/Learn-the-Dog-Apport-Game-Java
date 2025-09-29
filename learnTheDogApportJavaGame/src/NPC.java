@@ -11,28 +11,21 @@
      private String npc_Name;
      private String npc_Message;
 
-
           public NPC (String npc_Name, String npc_Message){
-
                this.npc_Name = npc_Name;
                this.npc_Message = npc_Message;
 
           }
-
+          
           public String getNpc_Name(){
-
                return npc_Name;
-
           }
 
           public String getNpc_Message(){
-
                return npc_Message;
-
           }
 
           public static NPC[] npcs = {
-
                   new NPC(
 
                           "Agneta",
@@ -74,11 +67,8 @@
           public static NPC getNPC(String npcInput){
 
                for (NPC npc: npcs ){
-
                     if (npc.npc_Name.equals(npcInput.toLowerCase())) {
-
                          return npc;
-
                     }
                }
                return null;
