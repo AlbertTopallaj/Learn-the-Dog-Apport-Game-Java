@@ -2,22 +2,13 @@ import java.util.ArrayList;
 
     /*
     TODO:
-        - Change name of Items to "Item".
-        - Treat Class needs getMethods to display Treat information to the player ("Name, Description, Effects")
-        - Map Class should be a container class
-            e.g: Map Constructor should hold ArrayLists of the type
-            Item, Treat & NPC as it's private variables.
-        - Dog Class needs to figure out together with Treat Class how
-            they want to calculate the eat method and the calculation for it.
-            Specifically how "successChance" should be affected by treats with different values.
-            Also so that it becomes more reliable.
-        - Items Class should be a container class(?) Depends on where we want to store the arraylists.
-            In the Game Class?
+        -
      */
 
 public class Game {
     //___PUBLIC___
     public boolean isWin = false;                       // will be change to private and make a set and get method.
+    int isRunning = 1;
 
     //___PRIVATE___
     private final int inventorySpace = 10;
@@ -26,7 +17,7 @@ public class Game {
     ArrayList<Map> maps = new ArrayList<>();                // All maps of the game.
 
     //Will track the current state of the player in game.
-    private enum PlayerStates {
+    private enum playerStates {
         MAIN,
         HELP,
         PICK_UP,
@@ -35,19 +26,48 @@ public class Game {
         EXIT
     }
 
-    PlayerStates currentState = PlayerStates.MAIN;
+    playerStates currentState = playerStates.MAIN;
+
+    public int runGame()
+    {
+        System.out.println("Game started");
+        // stuff happened and game finish isRunning = 0;
+        return isRunning;
+    }
 
     //Displays relative info and feedback to the player in the console.
-    public String DisplayText(String outString) {
+    public String displayText(String outString) {
         String display = "";
 
-        while(currentState.equals(PlayerStates.MAIN))       // Uses Enum states to determine what game logic to run
+
+        while(currentState.equals(playerStates.MAIN))       // Uses Enum states to determine what game logic to run
         {
             System.out.println("test test :O");
             display = "test test :)";
-            currentState = PlayerStates.EXIT;               // NOTE: this is temporary
+            currentState = playerStates.EXIT;               // NOTE: this is temporary
             break;                                          // will immediately exit while loop.
         }
+        while(currentState.equals(playerStates.HELP))       // .
+        {
+
+        }
+        while(currentState.equals(playerStates.PICK_UP))       // .
+        {
+
+        }
+        while(currentState.equals(playerStates.INVENTORY))       // .
+        {
+
+        }
+        while(currentState.equals(playerStates.MOVE))       // .
+        {
+
+        }
+        while(currentState.equals(playerStates.EXIT))       // .
+        {
+
+        }
+
         return display;
     }
 }
