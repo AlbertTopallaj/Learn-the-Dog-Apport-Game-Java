@@ -28,7 +28,7 @@ public class Game {
 
 
     // text formatting and templates.
-    String visibleItems = "";
+
     String oneLine = "\n";
     String twoLine = "\n\n";
     String threeLine = "\n\n\n";
@@ -39,33 +39,45 @@ public class Game {
     String storyIntroduction = oneLine + "Du står med koppel i handen. Din hund är lat och ledsen." +
             "\nKan den där hunden ens några tricks alls? Men då får du idén..." +
             "\nApport!" +
-            "\nKan du ens lära denna hund att göra apport?";
+            "\nKan man ens lära denna hund att göra apport?";
     String placeName="";
     String placeDescription ="";
     String commandOptions ="";
+    String inventoryItems ="";
     String heldItemName ="";
     String heldItemDesc ="";
+    String visibleItems = "";
 
     String topHalf;
-    String HUDLine = twoLine + lineSeparator + oneLine;
+    String HUDLine = twoLine + lineSeparator;
     String bottomHalf;
     String reactionToPickingUp = "Your inventory is empty...\n";
     String query = "What is your action?: ";
-    String visibleHeader = twoLine + "[Visible Objects]:" + oneLine;
-    String inventoryHeader = "[Inventory]:" + oneLine;
-    String inspectingHeader = "[Inspecting]: ";
+    String visibleHeader = twoLine + "[VISIBLE OBJECTS]:" + oneLine;
+    String inventoryHeader = "[INVENTORY]:" + oneLine;
+    String inspectingHeader = "[INSPECTING]: ";
     String locationHeader = "Your Location: ";
 
     String commandsInfo =
             """
-            [Help]:
-                >Inspect [Object Name] - \nGives the player a list of object and items from the players vicinity that can be interacted and gathered.
-               \s
-                >Inventory - \nShows a list of items in the player's possession.
-               \s
-                >Move to [Location name] - \nChanges the player's current location to the location selected. \nThe location can be picked from available options mentioned in the current location's description,\noften marked by "[]" brackets.
-               \s
-                >Dog - \nA pet that allows the player to perform special abilities from the listed available options.
+            [HELP]:
+            GOAL OF THE GAME:
+                Teach the dog fetch.
+                \s
+            ============================================================================================
+            COMMAND INFO:
+                \s
+                * Inspect [Object Name] - \nGives the player a list of object and items from the players vicinity that can be interacted and gathered.
+            ____________________________________________________________________________________________
+                \s
+                * Inventory - \nShows a list of items in the player's possession.
+            ____________________________________________________________________________________________
+                \s
+                * Move to [Location name] - \nChanges the player's current location to the location selected. \nThe location can be picked from available options mentioned in the current location's description,\noften marked by "[]" brackets.
+            ____________________________________________________________________________________________
+                \s
+                * Dog - \nA pet that allows the player to perform special abilities from the listed available options.
+            ____________________________________________________________________________________________
            \s""";
 
 
@@ -73,10 +85,6 @@ public class Game {
 
     ArrayList<Item> itemsTest = new ArrayList<>();
     ArrayList<Item> itemsTest2 = new ArrayList<>();
-
-
-
-    ArrayList<Map> mapsTest = new ArrayList<Map>();
 
     //______________________________________________REMOVE LATER_____________________________
 
@@ -106,7 +114,7 @@ public class Game {
                 if(currentState != playerStates.START) {
                     userInput = scanner.nextLine();
                 }
-                checkUserInput(userInput,currentMap);
+                checkUserInput();
                 }
             else {
                 // this runs when the player is moving.
@@ -118,16 +126,16 @@ public class Game {
         return isRunning;
     }
 
-    //Displays relative info and feedback to the player in the console.
+    // Displays relevant info and feedback to the player in the console.
     public String stateMachine(String outString) {
         // the string that gets returned and displayed in the console.
         String display = "";
-
         switch (currentState) {
+            //INITIATES START VARIABLES HERE.
             case playerStates.START:
                 System.out.println("TEACH THE DOG APPORT the GAME!");
 
-                //Maps here
+                //Declare the map course here. TEMPORARY items and maps for now.
                 itemsTest.add(new Item("Key", "An old iron key covered in rust. It looks fragile but might open something important.", true, false));
                 itemsTest.add(new Item("Tome", "A thick, dusty book filled with unreadable runes. It hums faintly with magic. IT CANNOT BE PICKED UP!", false, false));
                 itemsTest.add(new Item("Sword", "The blade is snapped in half. Perhaps it could be repaired.", true, false));
@@ -136,14 +144,18 @@ public class Game {
                 maps.add(new Map("Home","A cozy and warm place, nothing out of the ordinary.\n Yet you wonder how it would be to go far far [Away].",itemsTest));
                 maps.add(new Map("Away","A cold and scary place, nothing out ordinary at all here. \nYou start longing for [Home].",itemsTest2));
 
+                //sets the current player location.
                 currentMap = maps.get(0);
-                currentState = playerStates.IDLE;
+                //Updates a bunch of String variables that prepares context to be displayed.
                 updateTitles();
-
+                showAllItemInCurrentMap();
+                //Enters IDLE state.
+                currentState = playerStates.IDLE;
             case playerStates.IDLE:
-                showAllItemInList(currentMap.getItems());
+
+                showAllItemInCurrentMap();
                 commandOptions = """
-                        [Type Commands]:
+                        [TYPE COMMAND]:
                         > Help
                         > Inspect [Object Name]
                         > Inventory
@@ -158,24 +170,24 @@ public class Game {
 
             case playerStates.HELP:
                 commandOptions = """
-                        [Type Commands]:
+                        [TYPE COMMANDS]:
                         > Return""";
 
-                bottomHalf = threeLine + commandOptions + threeLine + twoLine;
+                bottomHalf = threeLine + commandOptions + twoLine + twoLine;
                 //compiling UI
                 display = commandsInfo + HUDLine + bottomHalf + query;
                 break;
 
             case playerStates.INSPECT:
 
-                if(heldItem.canPickUp() == true){
+                if(heldItem.canPickUp()){
                     commandOptions = """
-                        [Type Commands]:
-                        Put in your inventory? 
+                        [TYPE COMMANDS]:
+                        Put in your inventory?
                         Yes or No?""";
                 } else {
                     commandOptions = """
-                        [Type Commands]:
+                        [TYPE COMMANDS]:
                         > Return""";
                     reactionToPickingUp = "";
                 }
@@ -187,20 +199,20 @@ public class Game {
 
             case playerStates.INVENTORY:
 
-                showAllItemInList(inventory);
-                if(inventory.size()==0) {
+                showAllItemInInventory();
+                if(inventory.isEmpty()) {
                     commandOptions = """
-                        [Type Commands]:
+                        [TYPE COMMANDS]:
                         > Return""";
                 }else {
                     commandOptions = """
-                        [Type Commands]:
+                        [TYPE COMMANDS]:
                         > Inspect [Object Name]
                         > Return""";
                 }
 
-                topHalf = visibleHeader + visibleItems + HUDLine + twoLine + inventoryHeader + HUDLine;
-                bottomHalf = threeLine + reactionToPickingUp + commandOptions + twoLine;
+                topHalf = visibleHeader + visibleItems + HUDLine + twoLine + reactionToPickingUp + inventoryHeader + inventoryItems + HUDLine;
+                bottomHalf = threeLine + commandOptions + twoLine + query;
                 display = topHalf + bottomHalf;
                 break;
 
@@ -209,6 +221,10 @@ public class Game {
                 break;
 
             case playerStates.DOG:
+                commandOptions = """
+                        [TYPE COMMANDS]:
+                        > Return""";
+                display = "NOT FINISHED, WORK IN PROGRESS \n\n\n\n\n" + commandOptions + "\n\n" + query;
                 break;
 
             case playerStates.EXIT:
@@ -216,67 +232,102 @@ public class Game {
                 break;
         }
         // updates all the hud elements that need to update when player moves or interacts.
+        //showAllItemInList(currentMap.getItems());
         updateTitles();
         return display;
     }
 
-    private void checkUserInput(String userIn,Map curMap)
+    // Handels the players string input.
+    private void checkUserInput()
     {
-        System.out.println("Player typed: " + userIn + " | Player current map: " + curMap.getName());
-        if(userIn != "")
+        if(userInput.length()>25)
+        {
+            return;
+        }
+        //Debug print.
+        //System.out.println("Player typed: " + userIn + " | Player current map: " + curMap.getName());
+        if(userInput != "")
         {
             switch (currentState)
             {
                 case playerStates.IDLE:
-                    if(userIn.equalsIgnoreCase("help")) {
+                    if(userInput.equalsIgnoreCase("help")) {
                         System.out.println("Played asked for help");
                         currentState = playerStates.HELP;
                     }
-                    else if(userIn.toLowerCase().contains("inspect ")) {
-                        if(searchItemInItemList(userIn.substring(8),curMap.getItems()) != null) {
-                            heldItem = searchItemInItemList(userIn.substring(8),curMap.getItems());
+                    else if(userInput.toLowerCase().contains("inspect ")) {
+                        //if what comes after "inspect " matches any of the items on the map.
+                        if(searchAndInspectItem(userInput.substring(8),currentMap.getItems()) != null) {
+                            heldItem = searchAndInspectItem(userInput.substring(8),currentMap.getItems());
                             currentState = playerStates.INSPECT;
-                            System.out.println("Item found : " + heldItem.getItem_name());
                         }
                         break;
                     }
-                    else if(userIn.equalsIgnoreCase("inventory")) {
+                    else if(userInput.equalsIgnoreCase("inventory")) {
                         currentState = playerStates.INVENTORY;
                         break;
                     }
-                    else if(userIn.toLowerCase().contains("go to ")) {
-                        if(searchMapinMapList(userIn.substring(6),maps) != null) {
+                    else if(userInput.toLowerCase().contains("go to ")) {
+                        //
+                        if(searchMapinMapList(userInput.substring(6)) != null) {
                             walkingAnimation();
-                            currentMap = searchMapinMapList(userIn.substring(6),maps);
+                            currentMap = searchMapinMapList(userInput.substring(6));
                             currentState = playerStates.MOVE;
                         }
                         break;
                     }
-                    else if(userIn.equalsIgnoreCase("dog")) {
+                    else if(userInput.toLowerCase().contains("move to ")) {
+                        //
+                        if(searchMapinMapList(userInput.substring(8)) != null) {
+                            walkingAnimation();
+                            currentMap = searchMapinMapList(userInput.substring(8));
+                            currentState = playerStates.MOVE;
+                        }
+                        break;
+                    }
+                    else if(userInput.equalsIgnoreCase("dog")) {
+                        currentState = playerStates.DOG;
+                        break;
                     }
                     break;
                 case playerStates.HELP:
-                    if(userIn.equalsIgnoreCase("return")) {
+                    if(userInput.equalsIgnoreCase("return")) {
                         currentState = playerStates.IDLE;
                     }
                     break;
                 case playerStates.INSPECT:
                     if(heldItem.canPickUp()) {
-                        if(userIn.toLowerCase().contains("no")) {
+                        if(userInput.toLowerCase().contains("no")) {
                             currentState = playerStates.IDLE;
                         }
-                        else if(userIn.toLowerCase().contains("yes")){
-                            reactionToPickingUp = "You picked up the " + heldItemName + "!\n\n";
-                            inventory.add(heldItem);
+                        else if(userInput.toLowerCase().contains("yes")){
+                            pickUpItemFromMap();
                             currentState = playerStates.INVENTORY;
                         }
+                        break;
                     }
-                    break;
+                    if (userInput.equalsIgnoreCase("return")) {
+                    currentState = playerStates.IDLE;
+                    };
                 case playerStates.INVENTORY:
+                    if (userInput.equalsIgnoreCase("return")) {
+                        reactionToPickingUp ="";
+                        currentState = playerStates.IDLE;
+                    } else if(userInput.toLowerCase().contains("inspect ")) {
+                        //if what comes after "inspect " matches any of the items on the map.
+                        if(searchAndInspectItem(userInput.substring(8),currentMap.getItems()) != null) {
+                            heldItem = searchAndInspectItem(userInput.substring(8),currentMap.getItems());
+                            currentState = playerStates.INSPECT;
+                        }
+                        break;
+                    }
                     break;
                 case playerStates.MOVE:
                     break;
                 case playerStates.DOG:
+                    if (userInput.equalsIgnoreCase("return")) {
+                        currentState = playerStates.IDLE;
+                    };
                     break;
             }
         }
@@ -287,11 +338,34 @@ public class Game {
         placeDescription = twoLine + indent2 + currentMap.getDescription();
     }
 
-    private Map searchMapinMapList(String searchTerm, ArrayList<Map> listOfMaps) {
-        for (int i = 0; i <= listOfMaps.size() -1; i++) {
-            if (searchTerm.equalsIgnoreCase(listOfMaps.get(i).getName())) {
-                currentMap = listOfMaps.get(i);
-                return listOfMaps.get(i);
+    private void pickUpItemFromMap()
+    {
+        System.out.println("Item was picked up DEBUG");
+        for (int j = 0; j <= maps.size() -1; j++)
+        {
+            if(currentMap.getName().equalsIgnoreCase(maps.get(j).getName().toLowerCase()))
+            {
+                for (int i = 0; i <= currentMap.getItems().size() -1; i++) {
+                    if(heldItem.getItem_name().equalsIgnoreCase(currentMap.getItems().get(i).getItem_name()))
+                    {
+                        reactionToPickingUp = "\nYou picked up the " + heldItemName + "!\n\n";
+                        inventory.add(heldItem);
+                        currentMap.getItems().remove(i);
+                        maps.set(j,currentMap);
+                        showAllItemInCurrentMap();
+                        showAllItemInInventory();
+                        updateTitles();
+                    }
+                }
+            }
+        }
+    }
+
+    private Map searchMapinMapList(String searchTerm) {
+        for (int i = 0; i <= maps.size() -1; i++) {
+            if (searchTerm.equalsIgnoreCase(maps.get(i).getName())) {
+                currentMap = maps.get(i);
+                return maps.get(i);
             }
         }
         return null;
@@ -317,7 +391,7 @@ public class Game {
         }
     }
 
-    private Item searchItemInItemList(String searchTerm, ArrayList<Item> listOfItems) {
+    private Item searchAndInspectItem(String searchTerm, ArrayList<Item> listOfItems) {
         for (int i = 0; i <= listOfItems.size() -1; i++) {
             if (searchTerm.equalsIgnoreCase(listOfItems.get(i).getItem_name())) {
                 heldItem = listOfItems.get(i);
@@ -330,10 +404,16 @@ public class Game {
         return null;
     }
 
-    private void showAllItemInList(ArrayList<Item> listOfItems) {
+    private void showAllItemInInventory() {
+        inventoryItems = "";
+        for (int i = 0; i <= inventory.size() -1; i++) {
+            inventoryItems += indent2 + inventory.get(i).getItem_name() + ", \n";
+        }
+    }
+    private void showAllItemInCurrentMap() {
         visibleItems = "";
-        for (int i = 0; i <= listOfItems.size() -1; i++) {
-            visibleItems += indent2 + listOfItems.get(i).getItem_name() + ", \n";
+        for (int i = 0; i <= currentMap.getItems().size() -1; i++) {
+            visibleItems += indent2 + currentMap.getItems().get(i).getItem_name() + ", \n";
         }
     }
     private void newPage() {

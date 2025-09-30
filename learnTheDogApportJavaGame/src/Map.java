@@ -3,9 +3,9 @@ import java.util.Arrays;
 
 public class Map {
     public String name;
-    public static String description;
-    public static ArrayList<Item> items;
-    public static ArrayList<Treat> treats;
+    public String description;
+    public ArrayList<Item> items;
+    public ArrayList<Treat> treats;
     public ArrayList<NPC> NPCs;
 
     Map(String name, String description, ArrayList<Item> items) {
