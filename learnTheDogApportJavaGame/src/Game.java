@@ -36,9 +36,9 @@ public class Game {
     String indent2 = "  - ";
     String lineSeparator = "】============================================================================================【";
 
-    String storyIntroduction = oneLine + "Du står med koppel i handen. Din hund är lat och ledsen." +
-            "\nKan den där hunden ens några tricks alls? Men då får du idén..." +
-            "\nApport!" +
+    String storyIntroduction = "-DETTA ÄR ETT OFÄRDIGT PROJECT MED TEMPORÄRA VARIABLAR PÅ PLATS OCH BLANDAT SPRÅK-" + oneLine + "\nDu står med koppel i handen. Din hund är lat och ledsen." +
+            "\nKan den där hunden ens några tricks alls tänker du." +
+            "\nMen då får du idén... Apport!" +
             "\nKan man ens lära denna hund att göra apport?";
     String placeName="";
     String placeDescription ="";
@@ -67,13 +67,13 @@ public class Game {
             ============================================================================================
             COMMAND INFO:
                 \s
-                * Inspect [Object Name] - \nGives the player a list of object and items from the players vicinity that can be interacted and gathered.
+                * Inspect [Object Name] - \nAllows the player to pick an object the scene and inspect it closer.
             ____________________________________________________________________________________________
                 \s
                 * Inventory - \nShows a list of items in the player's possession.
             ____________________________________________________________________________________________
                 \s
-                * Move to [Location name] - \nChanges the player's current location to the location selected. \nThe location can be picked from available options mentioned in the current location's description,\noften marked by "[]" brackets.
+                * Go to [Location name] - \nChanges the player's current location to the location selected. \nThe location can be picked from available options mentioned in the current location's description,\noften marked by "[]" brackets.
             ____________________________________________________________________________________________
                 \s
                 * Dog - \nA pet that allows the player to perform special abilities from the listed available options.
@@ -142,7 +142,7 @@ public class Game {
                 itemsTest2.add(new Item("GoldenChalice", "The blade is snapped in half. Perhaps it could be repaired.", true, false));
 
                 maps.add(new Map("Home","A cozy and warm place, nothing out of the ordinary.\n Yet you wonder how it would be to go far far [Away].",itemsTest));
-                maps.add(new Map("Away","A cold and scary place, nothing out ordinary at all here. \nYou start longing for [Home].",itemsTest2));
+                maps.add(new Map("Away","A cold and scary place, nothing out of the ordinary at all here. \nYou start longing for [Home].",itemsTest2));
 
                 //sets the current player location.
                 currentMap = maps.get(0);
@@ -181,11 +181,13 @@ public class Game {
             case playerStates.INSPECT:
 
                 if(heldItem.canPickUp()){
+                    query = "What is your decision: ";
                     commandOptions = """
                         [TYPE COMMANDS]:
                         Put in your inventory?
                         Yes or No?""";
                 } else {
+                    query = "What is your action?: ";
                     commandOptions = """
                         [TYPE COMMANDS]:
                         > Return""";
