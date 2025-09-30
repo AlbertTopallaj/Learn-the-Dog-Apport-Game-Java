@@ -22,24 +22,23 @@ public class Map {
         this.NPCs = NPCs;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
-    public String getDescription()
-    {
+
+    public String getDescription() {
         return description;
     }
-    public ArrayList<Item> getItems()
-    {
+
+    public ArrayList<Item> getItems() {
         return items;
     }
-    public ArrayList<Treat> getTreats()
-    {
+
+    public ArrayList<Treat> getTreats() {
         return treats;
     }
-    public ArrayList<NPC> getNPCs()
-    {
+
+    public ArrayList<NPC> getNPCs() {
         return NPCs;
     }
 
@@ -48,7 +47,11 @@ public class Map {
                     "hemma",
                     "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(), //kan inte fylla Treats ännu, saknar funktion som returnar ett specifikt treat. Just nu returnas bara hela arrayen.
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Grisöra"),
+                            Treat.getTreat("Lever"),
+                            Treat.getTreat("Hundfoder")
+                    )),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kent")))
             ),
 
@@ -56,7 +59,7 @@ public class Map {
                     "trädgård",
                     "Din inhägnade lilla trädgård utanför ditt hus. Fina blommor och buskar pryder trädgården.",
                     new ArrayList<Item>(Arrays.asList(Item.getItem("Hundleksak"))),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Morot"))),
                     new ArrayList<NPC>()
             ),
 
@@ -64,14 +67,17 @@ public class Map {
                     "park",
                     "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden.",
                     new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Ben"))),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Agneta")))
             ),
 
             new Map("kiosk",
                     "Du står vid en välskött kiosk. Den är öppen och en man står bakom disken och ser uttråkad ut.",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Köttbulle"),
+                            Treat.getTreat("Ostbit")
+                    )),
                     new ArrayList<NPC>()
             ),
 
@@ -79,7 +85,7 @@ public class Map {
                     "parkeringsplats",
                     "En asfalterad parkeringsplats intill parken med ett par parkerade bilar.",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Biscuit"))),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Gunnar")))
             ),
 
@@ -87,7 +93,7 @@ public class Map {
                     "badplats",
                     "En liten strand vid en sjö ligger vid parkens bortre ände.",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Ben"))),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kurt")))
             ),
 
@@ -95,7 +101,10 @@ public class Map {
                     "skogsstig",
                     "En smal stig slingrar sig in i en skog jämte parken. Här kanske man kan hitta en bra pinne.",
                     new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
-                    new ArrayList<Treat>(),
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Biscuit"),
+                            Treat.getTreat("Ostbit")
+                    )),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Glenn")))
             ),
     };

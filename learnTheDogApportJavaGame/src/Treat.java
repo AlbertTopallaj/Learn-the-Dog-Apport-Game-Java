@@ -81,6 +81,14 @@ public class Treat {
                 ),
         }; // Hur dubblar jag poängen som int?
     }
+
+    public static Treat getTreat(String treatInput) {
+        Treat[] treatArray = treatArray(); // metod för att skicka ut den plats som spelaren vill gå till
+        for (Treat treat : treatArray) {
+            if (treat.name.equals(treatInput)) { // söker efter platsnamn och skickar ut objektet som matchar från arrayen till spelet
+                return treat;
+            }
+        }
+        return null;
+    }
 }
-
-
