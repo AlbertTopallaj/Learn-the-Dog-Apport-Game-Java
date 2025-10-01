@@ -8,21 +8,21 @@
 
      public class NPC {
 
-     private String npc_Name;
-     private String npc_Message;
+     private String name;
+     private String message;
 
-          public NPC (String npc_Name, String npc_Message){
-               this.npc_Name = npc_Name;
-               this.npc_Message = npc_Message;
+          public NPC (String name, String message){
+               this.name = name;
+               this.message = message;
 
           }
           
-          public String getNpc_Name(){
-               return npc_Name;
+          public String getName(){
+               return name;
           }
 
-          public String getNpc_Message(){
-               return npc_Message;
+          public String getMessage(){
+               return message;
           }
 
           public static NPC[] npcs = {
@@ -67,7 +67,7 @@
           public static NPC getNPC(String npcInput){
 
                for (NPC npc: npcs ){
-                    if (npc.npc_Name.equals(npcInput.toLowerCase())) {
+                    if (npc.name.equals(npcInput.toLowerCase())) {
                          return npc;
                     }
                }
