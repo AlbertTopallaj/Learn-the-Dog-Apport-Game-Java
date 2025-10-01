@@ -65,7 +65,7 @@ public class Map {
 
             new Map(
                     "park",
-                    "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden.",
+                    "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden. Åt vänster om dig står en [kiosk] med en man bakom kassan. ",
                     new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
                     new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Ben"))),
                     new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Agneta")))

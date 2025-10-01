@@ -129,7 +129,7 @@ public class Game {
     // Displays relevant info and feedback to the player in the console.
     public String stateMachine(String outString) {
         // the string that gets returned and displayed in the console.
-        String display = "";
+        String textToBeDisplayed = "";
         switch (currentState) {
             //INITIATES START VARIABLES HERE.
             case playerStates.START:
@@ -144,11 +144,14 @@ public class Game {
                 maps.add(new Map("Home","A cozy and warm place, nothing out of the ordinary.\n Yet you wonder how it would be to go far far [Away].",itemsTest));
                 maps.add(new Map("Away","A cold and scary place, nothing out of the ordinary at all here. \nYou start longing for [Home].",itemsTest2));
 
+                //maps = Map.locations;
+
+
                 //sets the current player location.
                 currentMap = maps.get(0);
                 //Updates a bunch of String variables that prepares context to be displayed.
                 updateTitles();
-                showAllItemInCurrentMap();
+                //showAllItemInCurrentMap();
                 //Enters IDLE state.
                 currentState = playerStates.IDLE;
             case playerStates.IDLE:
@@ -165,7 +168,7 @@ public class Game {
                 bottomHalf = threeLine + commandOptions + twoLine;
 
                 //compiling UI
-                display = topHalf + bottomHalf + query;
+                textToBeDisplayed = topHalf + bottomHalf + query;
                 break;
 
             case playerStates.HELP:
@@ -175,7 +178,7 @@ public class Game {
 
                 bottomHalf = threeLine + commandOptions + twoLine + twoLine;
                 //compiling UI
-                display = commandsInfo + HUDLine + bottomHalf + query;
+                textToBeDisplayed = commandsInfo + HUDLine + bottomHalf + query;
                 break;
 
             case playerStates.INSPECT:
@@ -195,7 +198,7 @@ public class Game {
                 }
 
                 //compiling UI
-                display = inspectingHeader + heldItemName + oneLine + indent2 + heldItemDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + query;
+                textToBeDisplayed = inspectingHeader + heldItemName + oneLine + indent2 + heldItemDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + query;
 
                 break;
 
@@ -215,7 +218,7 @@ public class Game {
 
                 topHalf = visibleHeader + visibleItems + HUDLine + twoLine + reactionToPickingUp + inventoryHeader + inventoryItems + HUDLine;
                 bottomHalf = threeLine + commandOptions + twoLine + query;
-                display = topHalf + bottomHalf;
+                textToBeDisplayed = topHalf + bottomHalf;
                 break;
 
             case playerStates.MOVE:
@@ -226,7 +229,7 @@ public class Game {
                 commandOptions = """
                         [TYPE COMMANDS]:
                         > Return""";
-                display = "NOT FINISHED, WORK IN PROGRESS \n\n\n\n\n" + commandOptions + "\n\n" + query;
+                textToBeDisplayed = "NOT FINISHED, WORK IN PROGRESS \n\n\n\n\n" + commandOptions + "\n\n" + query;
                 break;
 
             case playerStates.EXIT:
@@ -236,7 +239,7 @@ public class Game {
         // updates all the hud elements that need to update when player moves or interacts.
         //showAllItemInList(currentMap.getItems());
         updateTitles();
-        return display;
+        return textToBeDisplayed;
     }
 
     // Handels the players string input.
@@ -254,8 +257,9 @@ public class Game {
             {
                 case playerStates.IDLE:
                     if(userInput.equalsIgnoreCase("help")) {
-                        System.out.println("Played asked for help");
+                        //System.out.println("Played asked for help");
                         currentState = playerStates.HELP;
+                        break;
                     }
                     else if(userInput.toLowerCase().contains("inspect ")) {
                         //if what comes after "inspect " matches any of the items on the map.
@@ -396,7 +400,7 @@ public class Game {
     private Item searchAndInspectItem(String searchTerm, ArrayList<Item> listOfItems) {
         for (int i = 0; i <= listOfItems.size() -1; i++) {
             if (searchTerm.equalsIgnoreCase(listOfItems.get(i).getItem_name())) {
-                heldItem = listOfItems.get(i);
+                //heldItem = listOfItems.get(i);
                 heldItemName = heldItem.getItem_name();
                 heldItemDesc = heldItem.getDescription();
                 return listOfItems.get(i);
@@ -409,13 +413,13 @@ public class Game {
     private void showAllItemInInventory() {
         inventoryItems = "";
         for (int i = 0; i <= inventory.size() -1; i++) {
-            inventoryItems += indent2 + inventory.get(i).getItem_name() + ", \n";
+            inventoryItems += indent2 + inventory.get(i).getItem_name() + ",\n";
         }
     }
     private void showAllItemInCurrentMap() {
         visibleItems = "";
         for (int i = 0; i <= currentMap.getItems().size() -1; i++) {
-            visibleItems += indent2 + currentMap.getItems().get(i).getItem_name() + ", \n";
+            visibleItems += indent2 + currentMap.getItems().get(i).getItem_name() + ",\n";
         }
     }
     private void newPage() {

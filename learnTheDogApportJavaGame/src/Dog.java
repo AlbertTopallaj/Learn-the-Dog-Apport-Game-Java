@@ -21,9 +21,21 @@ public class Dog {
     int happiness;
 
 
-    public void addFood(String String) {
-        happiness += Treat.getEffect();
+    public void addFood(Treat treat) {
+        happiness += treat.effect;
     }
+
+    // TODO: Lägg till ett till threshold för att kolla så att happiness är MINST över ett visst värde INNAN vi får försöka att vinna.
+    // flytta randomMagicNumberFactor till innanför funktionen.
+    // if happiness > minimumThresholdforWin.
+
+    //exempel:
+    //      ge nytt random tal till randomMagicNumberFactor.
+    //      if randomMagicNumberFactor + happiness > apportThresholdTry
+    //          return true.
+    //      else return false.
+    //  else return false.
+
 
     public boolean winThreshold() {
         if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
@@ -36,6 +48,9 @@ public class Dog {
 
     }
 
+
+    // Ändra namn till searchForHiddenItems & searchForHiddenTreats
+    // Ändra så att funktionerna returnerar en Arraylist<Item> med bara alla items som är hidden från den arraylist som passeras in i funktionen. Gör detsamma för Treats.
 
         //Search funktion för items
         public void searchItem(Map map) {
