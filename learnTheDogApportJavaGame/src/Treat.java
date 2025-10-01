@@ -24,7 +24,7 @@ public class Treat {
     }
 
     public static Treat[] treatArray() {
-        return new Treat[] {
+        return new Treat[]{
                 new Treat(
                         "Morot",
                         1,
