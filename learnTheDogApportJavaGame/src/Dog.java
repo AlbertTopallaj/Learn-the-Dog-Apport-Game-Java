@@ -37,33 +37,35 @@ public class Dog {
     }
 
 
-        //Search funktion för items
-        public void searchItem(Map map) {
-            System.out.println("Du söker igenom rummet");
+    //Search funktion för items
+    public void searchItem(Map map) {
+        System.out.println("Du söker igenom rummet");
 
-            if (Map.items == null) {
-                System.out.println("Du hittar inget av intresse!");
-            } else {
-                System.out.println("Du hittar följande saker:");
-                for (Item i : Map.items); {
-                    System.out.println("- " + Map.items + ": " + Map.description);
-                }
-                }
-            }
-
-
-            // Search funktion för treats
-            public void searchTreat(Map map) {
-                System.out.println("Du söker igenom rummet");
-
-                if (Map.treats == null) {
-                    System.out.println("Du hittar inget av intresse!");
-                } else {
-                    System.out.println("Du hittar följande saker:");
-                    for (Treat treat : Map.treats) ; {
-                        System.out.println("- " + Map.treats + ": " + Map.description);
-                    }
-                }
+        if (Map.items == null) {
+            System.out.println("Du hittar inget av intresse!");
+        } else {
+            System.out.println("Du hittar följande saker:");
+            for (Item i : Map.items) ;
+            {
+                System.out.println("- " + Map.items + ": " + Map.description);
             }
         }
-        //gör en liknande för treats me
+    }
+
+
+    // Search funktion för treats
+    public void searchTreat(Map map) {
+        System.out.println("Du söker igenom rummet");
+
+        if (Map.treats == null) {
+            System.out.println("Du hittar inget av intresse!");
+        } else {
+            System.out.println("Du hittar följande saker:");
+            for (Treat treat : Map.treats) ;
+            {
+                System.out.println("- " + Map.treats + ": " + Map.description);
+            }
+        }
+    }
+}
+//gör en liknande för treats me

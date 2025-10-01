@@ -79,7 +79,7 @@ public class Treat {
                         "Hemlig belöning som bara dyker upp i speciella lägen. Dubblar  dina poäng och ditt ego!",
                         true
                 ),
-        }; // Hur dubblar jag poängen som int?
+        };
     }
 
     public static Treat getTreat(String treatInput) {
