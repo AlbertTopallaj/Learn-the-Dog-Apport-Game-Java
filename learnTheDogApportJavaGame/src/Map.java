@@ -45,68 +45,106 @@ public class Map {
     public static Map[] locations = { // array med varje plats tillgänglig i spelet
             new Map(
                     "hemma",
-                    "Du är hemma i ditt hus. Här finns alla möjliga saker till hunden.",
-                    new ArrayList<Item>(),
-                    new ArrayList<Treat>(Arrays.asList(
-                            Treat.getTreat("Grisöra"),
-                            Treat.getTreat("Lever"),
-                            Treat.getTreat("Hundfoder")
+                    "Du är hemma i ditt lilla hus med hunden. När du tittar in i köket ser du [hundfoder] och ett [biscuit] i ett halvöppet köksskåp, och på golvet ligger en [hundleksak]. På en anslagstavla i kork ovanför byrån i hallen hänger en lapp med texten [ledtråd_apport]. Utanför ett fönster ser du din [trädgård].",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("ledtråd_mata"),
+                            Item.getItem("Hundleksak")
                     )),
-                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kent")))
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Hundfoder"),
+                            Treat.getTreat("Biscuit")
+                    )),
+                    new ArrayList<NPC>()
             ),
 
             new Map(
                     "trädgård",
-                    "Din inhägnade lilla trädgård utanför ditt hus. Fina blommor och buskar pryder trädgården.",
-                    new ArrayList<Item>(Arrays.asList(Item.getItem("Hundleksak"))),
-                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Morot"))),
-                    new ArrayList<NPC>()
-            ),
-
-            new Map(
-                    "park",
-                    "Du ser en park med stora, öppna grönytor som hade passat perfekt till att öva apport med hunden. Åt vänster om dig står en [kiosk] med en man bakom kassan. ",
-                    new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
-                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Ben"))),
-                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Agneta")))
-            ),
-
-            new Map("kiosk",
-                    "Du står vid en välskött kiosk. Den är öppen och en man står bakom disken och ser uttråkad ut.",
-                    new ArrayList<Item>(),
-                    new ArrayList<Treat>(Arrays.asList(
-                            Treat.getTreat("Köttbulle"),
-                            Treat.getTreat("Ostbit")
+                    "Hunden och du är i trädgården bakom ditt hus. På en trädgårdsmöbel ligger en lapp med texten [ledtråd_mata]. I trädgårdslandet sitter morfar [Gunnar] på knä och sköter om sina plantor. Bakom honom i en korg ligger en [morot] och lite andra grönsaker. I gräset längre bort ligger en [pinne]. I ett dunkelt hörn nära staketet ser du en grop i marken som din hund grävt. Ur gropen sticker det upp ett [ben]. En grind som leder mot skogen står öppen. Du vet att den vägen leder till [skogsgläntan]. Följer du vägen på husets framsida kommer du till parkens [parkeringsplats], eller så kan du gå in i ditt [Hem] igen.",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("ledtråd_mata"),
+                            Item.getItem("Pinne")
                     )),
-                    new ArrayList<NPC>()
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Morot"),
+                            Treat.getTreat("Ben")
+                    )),
+                    new ArrayList<NPC>(Arrays.asList(
+                            NPC.getNPC("Gunnar")
+                    ))
             ),
 
             new Map(
                     "parkeringsplats",
-                    "En asfalterad parkeringsplats intill parken med ett par parkerade bilar.",
+                    "Du och hunden står på parkens parkeringsplats. [Kent], din jobbarkompis, står vid sin bil och ser förvirrad och stressad ut. På en bänk närmare parkmynningen ligger en bortglömd ostmacka. Ingen verkar sakna den och du kan nog ta en [ostbit]. Härifrån kan du antingen gå in i stadens [park], eller tillbaka till din [trädgård].",
                     new ArrayList<Item>(),
-                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Biscuit"))),
-                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Gunnar")))
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Ostbit"))),
+                    new ArrayList<NPC>(Arrays.asList(
+                            NPC.getNPC("Kent")
+                    ))
+            ),
+
+            new Map(
+                    "park",
+                    "Nu är ni i parken. Parken har stora öppna gräsytor med träd sparsamt spridda i området. Det finns en fräsch och väl omhändertagen [kiosk] i närheten av parkens [parkeringsplats]. I ena änden av parken finns en [badplats], och i den andra änden en skog med en vältrampad [skogsstig]. På en picknickfilt under ett träd sitter [Agneta], din granne. I ett ihåligt träd lite längre bort skymtar du ett [grisöra] som du gömde i en lek till din hund i förra veckan. I gräset ligger också en utomordentligt fin [pinne].",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("Pinne")
+                    )),
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Grisöra")
+                    )),
+                    new ArrayList<NPC>(Arrays.asList(
+                            NPC.getNPC("Agneta")
+                    ))
+            ),
+
+            new Map("kiosk",
+                    "Ni kliver fram till parkens [kiosk]. Här säljs massor av olika varor - tidningar och godis etc., men inget som är av direkt intresse för dig. På disken står en korg med köttbullemackor från dagen innan. \"Gratis\" står det på en liten skylt. En [köttbulle] från en sådan macka hade varit bra motivation för din hund. [Glenn] står bakom dig i kön och ler mot din hund. Utanför kiosken kan du se tillbaka ut över [park]en med sina öppna gräsytor och utspridda träd.",
+                    new ArrayList<Item>(),
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Köttbulle")
+                    )),
+                    new ArrayList<NPC>(Arrays.asList(
+                            NPC.getNPC("Glenn")
+                    ))
             ),
 
             new Map(
                     "badplats",
-                    "En liten strand vid en sjö ligger vid parkens bortre ände.",
-                    new ArrayList<Item>(),
-                    new ArrayList<Treat>(Arrays.asList(Treat.getTreat("Ben"))),
-                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Kurt")))
+                    "Du lämnar [park]en bakom dig och går ner mot en [badplats]. Sanden är varm under solens ljus och vinden för med sig en frisk doft från vattnet. I sanden framför dig ligger en [pinne], halvt begravd men ändå tydligt synlig. Vid vattenbrynet står [Kurt] och tittar ut över sjön, stilla och eftertänksam. När du närmar dig vänder han sig om och sträcker fram en öppen hand. I den ligger en bit [lever] som han erbjuder dig att ta emot. Bakom honom glittrar vågorna och en mås ropar på avstånd.",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("Pinne")
+                    )),
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Lever")
+                    )),
+                    new ArrayList<NPC>(Arrays.asList(
+                            NPC.getNPC("Kurt")
+                    ))
             ),
 
             new Map(
                     "skogsstig",
-                    "En smal stig slingrar sig in i en skog jämte parken. Här kanske man kan hitta en bra pinne.",
-                    new ArrayList<Item>(Arrays.asList(Item.getItem("Pinne"))),
-                    new ArrayList<Treat>(Arrays.asList(
-                            Treat.getTreat("Biscuit"),
-                            Treat.getTreat("Ostbit")
+                    "Skogsstigen är inte speciellt märkvärdig. Den är vältrampad och används ofta av personer som du som promenerar med husdjur. Solen skymtar in bland trädtopparna och lyser upp skogen. En [pinne] ligger vid stigens kant. Vanligtvis håller sig folk på stigen, men idag ser du färska fotspår leda iväg från huvudstigen. Du kan antingen vända tillbaka till [glänta]n du kom ifrån, eller följa stigen hela vägen till [park]en.",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("Pinne")
                     )),
-                    new ArrayList<NPC>(Arrays.asList(NPC.getNPC("Glenn")))
+                    new ArrayList<Treat>(Arrays.asList(
+                            Treat.getTreat("Special godis")
+                    )),
+                    new ArrayList<NPC>()
             ),
+
+            new Map(
+                    "glänta",
+                    "Du kliver igenom grinden och lämnar din [trädgård] bakom dig. Efter en kort promenad genom skogen når du en glänta. I det vildvuxna gräset ligger en gammal [hundleksak]. En rostig gammal cykel står lutad mot ett träd. När du tittar närmare på den ser du en lapp med texten [ledtråd_köttbullar]. Fortsätter du genom gläntan vet du att du kommer hitta en [skogsstig] som leder vidare mot parken.",
+                    new ArrayList<Item>(Arrays.asList(
+                            Item.getItem("ledtråd_köttbullar"),
+                            Item.getItem("Hundleksak")
+                    )),
+                    new ArrayList<Treat>(),
+                    new ArrayList<NPC>()
+            )
     };
 
     public static Map getLocation(String locationInput) { // metod för att skicka ut den plats som spelaren vill gå till

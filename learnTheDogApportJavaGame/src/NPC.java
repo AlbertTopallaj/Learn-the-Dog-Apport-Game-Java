@@ -29,7 +29,7 @@ public class NPC {
             new NPC(
 
                     "Agneta",
-                    "Vilken söt hund, du kanske borde fråga gubben i kiosken om en köttbulle att mata hunden med"
+                    "Vilken söt hund, du kanske borde fråga gubben i kiosken om en köttbulle att mata hunden med."
 
             ),
 
@@ -44,21 +44,21 @@ public class NPC {
 
                     "Kurt",
                     "Hej, kul och se dig här vid vattnet. Passa på att ta ett dopp eller sola lite. " +
-                            "Hunden älskar också solen"
+                            "Hunden älskar också solen."
             ),
 
             new NPC(
 
                     "Kent",
-                    "Oj vad bra att du är här! Jag har tappat bort mina bilnycklar, " +
-                            "kan inte du skicka din hund på sök?"
+                    "Jag har tappat bort mina bilnycklar, " +
+                            "tänk vad smidigt att ha en hund som kan leta upp saker åt en."
 
             ),
 
             new NPC(
 
                     "Gunnar",
-                    "Hallå då, hunden ser rätt så hungrig ut, ge den lite mat vetja"
+                    "Hallå då, hunden ser rätt så hungrig ut, ge den lite mat vetja."
 
             )
 
