@@ -19,7 +19,7 @@ public class Dog {
     //Random rn = new Random(); //Genrera ett random nummer
     //int randomMagicNumberFactor = rn.nextInt(10) + 1;
     int happiness;
-    int minApportThreshold = 5
+    int minApportThreshold = 5;
 
 
     public void addFood(Treat treat) {

@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Item {
 
     // HIDDEN ITEMS - LÖST, SÅVIDA INTE ANNAT SÄGS.
@@ -10,20 +6,20 @@ public class Item {
 
     // RETURNERA BEROENDE PÅ
 
-    private String itemName;
+    private String name;
     private String description;
     private boolean canPickUp;
     private boolean isHidden;
 
-    public Item(String itemName, String description, boolean canPickUp, boolean isHidden) {
-        this.itemName = itemName;
+    public Item(String name, String description, boolean canPickUp, boolean isHidden) {
+        this.name = name;
         this.description = description;
         this.canPickUp = canPickUp;
         this.isHidden = isHidden;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -38,7 +34,7 @@ public class Item {
         return isHidden;
     }
 
-
+    // Statisk klass med alla spelobjekt
     public static Item[] items = {
             new Item(
                     "ledtråd_mata",
@@ -83,7 +79,7 @@ public class Item {
     public static Item getItem(String itemInput) { // Användaren skriver in itemets namn och plockar då om det
         // Ta in en string, returnera item från rätt lista
         for (Item item : items) {
-            if (item.getItemName().equals(itemInput.toLowerCase())) {
+            if (item.getName().equalsIgnoreCase(itemInput)) {
 
                 return item;
 

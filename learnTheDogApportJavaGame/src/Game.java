@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
     /*
@@ -7,15 +8,13 @@ import java.util.Scanner;
      */
 
 public class Game {
-
-    public boolean isWin = false;                       // will be change to private and make a set and get method.
-    int isRunning = 1;
+    Boolean isRunning = true;
 
 
     // parameters and containers.
     private final int inventorySpace = 10;
-    ArrayList<Item> inventory = new ArrayList<>(inventorySpace);          // All other items the player is carrying that are not edible.
-    ArrayList<Treat> treats = new ArrayList<>();            // Dog treats that the player carries, will be displayed in inventory in game.
+    ArrayList<Item> itemInventory = new ArrayList<>(inventorySpace);          // All other items the player is carrying that are not edible.
+    ArrayList<Treat> treatInventory = new ArrayList<>();            // Dog treats that the player carries, will be displayed in inventory in game.
     ArrayList<Map> maps = new ArrayList<>();                // All maps of the game.
     Scanner scanner = new Scanner(System.in);
     String userInput = "";
@@ -47,9 +46,14 @@ public class Game {
     String heldItemDesc = "";
     String visibleItems = "";
 
+    String inventoryTreats = "";
+    String heldTreatName = "";
+    String heldTreatDesc = "";
+    String visibleTreats = "";
+
     String topHalf;
-    String HUDLine = twoLine + lineSeparator;
     String bottomHalf;
+    String HUDLine = twoLine + lineSeparator;
     String reactionToPickingUp = "Your inventory is empty...\n";
     String query = "What is your action?: ";
     String visibleHeader = twoLine + "[VISIBLE OBJECTS]:" + oneLine;
@@ -102,26 +106,26 @@ public class Game {
 
     playerStates currentState = playerStates.START;
 
-    public int runGame() // returns 0 = Game Quits
-    {
-        if (isRunning != 0) {
-            newPage(); // this method clears the console.
-            // Checks the players input and switches state when they're not moving.
-            if (currentState != playerStates.MOVE) {
-                // Displays text on console for what state player is in.
-                System.out.print(stateMachine(userInput));
-                if (currentState != playerStates.START) {
-                    userInput = scanner.nextLine();
-                }
-                checkUserInput();
-            } else {
-                // this runs when the player is moving.
-                currentState = playerStates.IDLE;
-                updateTitles();
-            }
-            storyIntroduction = "";
-        }
+    public Boolean isGameRunning() {
         return isRunning;
+    }
+
+    public void runGame() // returns 0 = Game Quits
+    {
+        newPage(); // this method clears the console.
+        // Checks the players input and switches state when they're not moving.
+        if (currentState != playerStates.MOVE) {
+            // Displays text on console for what state player is in.
+            System.out.print(stateMachine(userInput));
+            if (currentState != playerStates.START) {
+                userInput = scanner.nextLine();
+            }
+            checkUserInput();
+        } else {
+            // this runs when the player is moving.
+            currentState = playerStates.IDLE;
+            updateTitles();
+        }
     }
 
     // Displays relevant info and feedback to the player in the console.
@@ -133,28 +137,20 @@ public class Game {
             case playerStates.START:
                 System.out.println("TEACH THE DOG APPORT the GAME!");
 
-                //Declare the map course here. TEMPORARY items and maps for now.
-                itemsTest.add(new Item("Key", "An old iron key covered in rust. It looks fragile but might open something important.", true, false));
-                itemsTest.add(new Item("Tome", "A thick, dusty book filled with unreadable runes. It hums faintly with magic. IT CANNOT BE PICKED UP!", false, false));
-                itemsTest.add(new Item("Sword", "The blade is snapped in half. Perhaps it could be repaired.", true, false));
-                itemsTest2.add(new Item("GoldenChalice", "The blade is snapped in half. Perhaps it could be repaired.", true, false));
-
-                maps.add(new Map("Home", "A cozy and warm place, nothing out of the ordinary.\n Yet you wonder how it would be to go far far [Away].", itemsTest));
-                maps.add(new Map("Away", "A cold and scary place, nothing out of the ordinary at all here. \nYou start longing for [Home].", itemsTest2));
-
-                //maps = Map.locations;
-
-
+                maps = new ArrayList<>(Arrays.asList(Map.locations));
                 //sets the current player location.
                 currentMap = maps.get(0);
                 //Updates a bunch of String variables that prepares context to be displayed.
                 updateTitles();
-                //showAllItemInCurrentMap();
+                showAllItemInCurrentMap();
+                showAllTreatsInCurrentMap();
                 //Enters IDLE state.
+                storyIntroduction = "";
                 currentState = playerStates.IDLE;
             case playerStates.IDLE:
 
                 showAllItemInCurrentMap();
+                showAllTreatsInCurrentMap();
                 commandOptions = """
                         [TYPE COMMAND]:
                         > Help
@@ -162,7 +158,8 @@ public class Game {
                         > Inventory
                         > Go to [Location Name]
                         > Dog""";
-                topHalf = storyIntroduction + twoLine + locationHeader + placeName + placeDescription + visibleHeader + visibleItems + HUDLine;
+                query = "What is your action?: ";
+                topHalf = storyIntroduction + twoLine + locationHeader + placeName + placeDescription + visibleHeader + visibleItems + visibleTreats + HUDLine;
                 bottomHalf = threeLine + commandOptions + twoLine;
 
                 //compiling UI
@@ -181,31 +178,48 @@ public class Game {
 
             case playerStates.INSPECT:
 
-                if (heldItem.canPickUp()) {
-                    query = "What is your decision: ";
+                if (heldItem != null) {
+                    if (heldItem.canPickUp()) {
+                        commandOptions = """
+                                [TYPE COMMANDS]:
+                                Put in your inventory?
+                                Yes or No?""";
+                        query = "What is your decision: ";
+                    } else {
+                        commandOptions = """
+                                [TYPE COMMANDS]:
+                                > Return""";
+                        reactionToPickingUp = "";
+                        query = "What is your action?: ";
+                    }
+                } else if (heldTreat != null) {
                     commandOptions = """
                             [TYPE COMMANDS]:
                             Put in your inventory?
                             Yes or No?""";
-                } else {
-                    query = "What is your action?: ";
-                    commandOptions = """
-                            [TYPE COMMANDS]:
-                            > Return""";
-                    reactionToPickingUp = "";
+                    query = "What is your decision: ";
                 }
 
                 //compiling UI
-                textToBeDisplayed = inspectingHeader + heldItemName + oneLine + indent2 + heldItemDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + query;
-
+                textToBeDisplayed = inspectingHeader + heldItemName + oneLine + indent2 + heldItemDesc + heldTreatName + oneLine + indent2 + heldTreatDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + query;
                 break;
 
             case playerStates.INVENTORY:
 
-                showAllItemInInventory();
-                if (inventory.isEmpty()) {
+                showAllItemsInInventory();
+                showAllTreatsInCurrentMap();
+
+                // changes command options displayed depending on which inventory is empty.
+                if (itemInventory.isEmpty() && (treatInventory.isEmpty())) // if both are filled.
+                {
                     commandOptions = """
                             [TYPE COMMANDS]:
+                            > Return""";
+                } else if (itemInventory.isEmpty()) {   // if only treatInventory.
+                    commandOptions = """
+                            [TYPE COMMANDS]:
+                            > Inspect [Object Name]
+                            > Feed dog [Object Name]
                             > Return""";
                 } else {
                     commandOptions = """
@@ -214,7 +228,8 @@ public class Game {
                             > Return""";
                 }
 
-                topHalf = visibleHeader + visibleItems + HUDLine + twoLine + reactionToPickingUp + inventoryHeader + inventoryItems + HUDLine;
+                query = "What is your action?: ";
+                topHalf = visibleHeader + visibleItems + visibleTreats + HUDLine + twoLine + reactionToPickingUp + inventoryHeader + inventoryItems + inventoryTreats + HUDLine;
                 bottomHalf = threeLine + commandOptions + twoLine + query;
                 textToBeDisplayed = topHalf + bottomHalf;
                 break;
@@ -226,12 +241,16 @@ public class Game {
             case playerStates.DOG:
                 commandOptions = """
                         [TYPE COMMANDS]:
+                        > Feed dog [Object Name]
+                        > Try fetch
                         > Return""";
-                textToBeDisplayed = "NOT FINISHED, WORK IN PROGRESS \n\n\n\n\n" + commandOptions + "\n\n" + query;
+                topHalf = "[DOG]: ";
+                bottomHalf = threeLine + commandOptions + twoLine + query;
+                textToBeDisplayed = topHalf + threeLine + "Dog -Woof Woof! \n\n\n\n\n" + bottomHalf;
                 break;
 
             case playerStates.EXIT:
-                isRunning = 0;
+                isRunning = false;
                 break;
         }
         // updates all the hud elements that need to update when player moves or interacts.
@@ -245,87 +264,146 @@ public class Game {
         if (userInput.length() > 25) {
             return;
         }
-        //Debug print.
-        //System.out.println("Player typed: " + userIn + " | Player current map: " + curMap.getName());
-        if (userInput != "") {
-            switch (currentState) {
-                case playerStates.IDLE:
-                    if (userInput.equalsIgnoreCase("help")) {
-                        //System.out.println("Played asked for help");
-                        currentState = playerStates.HELP;
+        if (userInput.isEmpty()) {
+            return;
+        }
+
+        switch (currentState) {
+            case playerStates.IDLE:
+                if (userInput.equalsIgnoreCase("help")) {
+                    //System.out.println("Played asked for help");
+                    currentState = playerStates.HELP;
+                    break;
+                } else if (userInput.equalsIgnoreCase("inventory")) {
+                    currentState = playerStates.INVENTORY;
+                    break;
+                } else if (userInput.toLowerCase().contains("inspect ")) {
+                    //if what comes after "inspect " matches any of the items on the map.
+                    Item itemSearched = searchAndHoldItem(userInput.substring(8), currentMap.getItems());
+                    Treat treatSearched = searchAndHoldTreat(userInput.substring(8), currentMap.getTreats());
+                    if (itemSearched == null && treatSearched == null) {
+                        heldItem = null;
+                        heldTreat = null;
                         break;
-                    } else if (userInput.toLowerCase().contains("inspect ")) {
-                        //if what comes after "inspect " matches any of the items on the map.
-                        if (searchAndInspectItem(userInput.substring(8), currentMap.getItems()) != null) {
-                            heldItem = searchAndInspectItem(userInput.substring(8), currentMap.getItems());
-                            currentState = playerStates.INSPECT;
+                    }
+                    if (itemSearched != null) {
+                        heldItem = itemSearched;
+                        currentState = playerStates.INSPECT;
+                    } else {
+                        heldTreat = treatSearched;
+                        currentState = playerStates.INSPECT;
+                    }
+                    break;
+                } else if (userInput.toLowerCase().contains("go to ")) {
+                    //
+                    Map mapSearched = searchMapInMapList(userInput.substring(6));
+                    if (mapSearched != null) {
+                        walkingAnimation();
+                        //currentMap = mapSearched;
+                        currentState = playerStates.MOVE;
+                    }
+                    break;
+                } else if (userInput.toLowerCase().contains("move to ")) {
+                    //
+                    Map mapSearched = searchMapInMapList(userInput.substring(8));
+                    if (mapSearched != null) {
+                        walkingAnimation();
+                        //currentMap = mapSearched;
+                        currentState = playerStates.MOVE;
+                    }
+                    break;
+                } else if (userInput.equalsIgnoreCase("dog")) {
+                    currentState = playerStates.DOG;
+                    break;
+                }
+                break;
+
+            case playerStates.HELP:
+                if (userInput.equalsIgnoreCase("return")) {
+                    currentState = playerStates.IDLE;
+                }
+                break;
+            case playerStates.INSPECT:
+
+                if (heldItem != null) {
+                    if (!(heldItem.canPickUp())) {
+                        if (userInput.equalsIgnoreCase("return")) {
+                            currentState = playerStates.IDLE;
                         }
                         break;
-                    } else if (userInput.equalsIgnoreCase("inventory")) {
+                    }
+                    if (userInput.toLowerCase().contains("no")) {
+                        currentState = playerStates.IDLE;
+                        break;
+                    }
+                    if (userInput.toLowerCase().contains("yes")) {
+                        pickUpItemFromMap();
                         currentState = playerStates.INVENTORY;
                         break;
-                    } else if (userInput.toLowerCase().contains("go to ")) {
-                        //
-                        if (searchMapinMapList(userInput.substring(6)) != null) {
-                            walkingAnimation();
-                            currentMap = searchMapinMapList(userInput.substring(6));
-                            currentState = playerStates.MOVE;
-                        }
+                    }
+                } else {
+                    if (userInput.toLowerCase().contains("no")) {
+                        currentState = playerStates.IDLE;
                         break;
-                    } else if (userInput.toLowerCase().contains("move to ")) {
-                        //
-                        if (searchMapinMapList(userInput.substring(8)) != null) {
-                            walkingAnimation();
-                            currentMap = searchMapinMapList(userInput.substring(8));
-                            currentState = playerStates.MOVE;
-                        }
+                    }
+                    if (userInput.toLowerCase().contains("yes")) {
+                        pickUpTreatFromMap();
+                        currentState = playerStates.INVENTORY;
                         break;
-                    } else if (userInput.equalsIgnoreCase("dog")) {
+                    }
+                }
+                break;
+
+            case playerStates.INVENTORY:
+                if (userInput.equalsIgnoreCase("return")) {
+                    reactionToPickingUp = "";
+                    currentState = playerStates.IDLE;
+                } else if (userInput.toLowerCase().contains("inspect ")) {
+                    //if what comes after "inspect " matches any of the items on the map.
+                    Item itemSearched = searchAndHoldItem(userInput.substring(8), currentMap.getItems());
+                    Treat treatSearched = searchAndHoldTreat(userInput.substring(8), currentMap.getTreats());
+                    if (itemSearched == null && treatSearched == null) {
+                        break;
+                    }
+                    if (itemSearched != null) {
+                        heldItem = itemSearched;
+                        currentState = playerStates.INSPECT;
+                    } else {
+                        heldTreat = treatSearched;
+                        currentState = playerStates.INSPECT;
+                    }
+                    break;
+                } else if (userInput.toLowerCase().contains("feed dog ")) {
+                    Item itemSearched = searchAndHoldItem(userInput.substring(9), itemInventory);
+                    Treat treatSearched = searchAndHoldTreat(userInput.substring(9), treatInventory);
+                    if (itemSearched == null && treatSearched == null) {
+                        heldItem = null;
+                        heldTreat = null;
+                        break;
+                    }
+                    if (itemSearched != null) {
+                        heldItem = null;
+                        // CANNOT FEED THE DOG THAT ITEM
+                        System.out.println("YOU CANNOT FEED THE DOG THAT ITEM!\n");
+                        currentState = playerStates.INVENTORY;
+                    } else {
+                        heldTreat = treatSearched;
                         currentState = playerStates.DOG;
-                        break;
                     }
                     break;
-                case playerStates.HELP:
-                    if (userInput.equalsIgnoreCase("return")) {
-                        currentState = playerStates.IDLE;
-                    }
-                    break;
-                case playerStates.INSPECT:
-                    if (heldItem.canPickUp()) {
-                        if (userInput.toLowerCase().contains("no")) {
-                            currentState = playerStates.IDLE;
-                        } else if (userInput.toLowerCase().contains("yes")) {
-                            pickUpItemFromMap();
-                            currentState = playerStates.INVENTORY;
-                        }
-                        break;
-                    }
-                    if (userInput.equalsIgnoreCase("return")) {
-                        currentState = playerStates.IDLE;
-                    }
-                    ;
-                case playerStates.INVENTORY:
-                    if (userInput.equalsIgnoreCase("return")) {
-                        reactionToPickingUp = "";
-                        currentState = playerStates.IDLE;
-                    } else if (userInput.toLowerCase().contains("inspect ")) {
-                        //if what comes after "inspect " matches any of the items on the map.
-                        if (searchAndInspectItem(userInput.substring(8), currentMap.getItems()) != null) {
-                            heldItem = searchAndInspectItem(userInput.substring(8), currentMap.getItems());
-                            currentState = playerStates.INSPECT;
-                        }
-                        break;
-                    }
-                    break;
-                case playerStates.MOVE:
-                    break;
-                case playerStates.DOG:
-                    if (userInput.equalsIgnoreCase("return")) {
-                        currentState = playerStates.IDLE;
-                    }
-                    ;
-                    break;
-            }
+                }
+
+                break;
+
+            case playerStates.MOVE:
+                break;
+
+            case playerStates.DOG:
+                if (userInput.equalsIgnoreCase("return")) {
+                    currentState = playerStates.IDLE;
+                }
+                ;
+                break;
         }
     }
 
@@ -336,24 +414,47 @@ public class Game {
 
     private void pickUpItemFromMap() {
         System.out.println("Item was picked up DEBUG");
-        for (int j = 0; j <= maps.size() - 1; j++) {
-            if (currentMap.getName().equalsIgnoreCase(maps.get(j).getName().toLowerCase())) {
-                for (int i = 0; i <= currentMap.getItems().size() - 1; i++) {
-                    if (heldItem.getItem_name().equalsIgnoreCase(currentMap.getItems().get(i).getItem_name())) {
-                        reactionToPickingUp = "\nYou picked up the " + heldItemName + "!\n\n";
-                        inventory.add(heldItem);
-                        currentMap.getItems().remove(i);
-                        maps.set(j, currentMap);
-                        showAllItemInCurrentMap();
-                        showAllItemInInventory();
-                        updateTitles();
-                    }
+        for (int j = 0; j < maps.size(); j++) {
+            if (!currentMap.getName().equalsIgnoreCase(maps.get(j).getName().toLowerCase())) {
+                continue;
+            }
+            for (int i = 0; i < currentMap.getItems().size(); i++) {
+                if (!heldItem.getName().equalsIgnoreCase(currentMap.getItems().get(i).getName())) {
+                    continue;
                 }
+                reactionToPickingUp = "\nYou picked up the " + heldItemName + "!\n\n";
+                itemInventory.add(heldItem);
+                currentMap.getItems().remove(i);
+                maps.set(j, currentMap);
+                showAllItemInCurrentMap();
+                showAllItemsInInventory();
+                updateTitles();
             }
         }
     }
 
-    private Map searchMapinMapList(String searchTerm) {
+    private void pickUpTreatFromMap() {
+        System.out.println("treat was picked up DEBUG");
+        for (int j = 0; j < maps.size(); j++) {
+            if (!currentMap.getName().equalsIgnoreCase(maps.get(j).getName().toLowerCase())) {
+                continue;
+            }
+            for (int i = 0; i < currentMap.getTreats().size(); i++) {
+                if (!heldTreat.getName().equalsIgnoreCase(currentMap.getTreats().get(i).getName())) {
+                    continue;
+                }
+                reactionToPickingUp = "\nYou picked up the " + heldTreatName + "!\n\n";
+                treatInventory.add(heldTreat);
+                currentMap.getTreats().remove(i);
+                maps.set(j, currentMap);
+                showAllTreatsInCurrentMap();
+                showAllTreatsInInventory();
+                updateTitles();
+            }
+        }
+    }
+
+    private Map searchMapInMapList(String searchTerm) {
         for (int i = 0; i <= maps.size() - 1; i++) {
             if (searchTerm.equalsIgnoreCase(maps.get(i).getName())) {
                 currentMap = maps.get(i);
@@ -383,30 +484,57 @@ public class Game {
         }
     }
 
-    private Item searchAndInspectItem(String searchTerm, ArrayList<Item> listOfItems) {
-        for (int i = 0; i <= listOfItems.size() - 1; i++) {
-            if (searchTerm.equalsIgnoreCase(listOfItems.get(i).getItem_name())) {
-                //heldItem = listOfItems.get(i);
-                heldItemName = heldItem.getItem_name();
+    private Item searchAndHoldItem(String searchTerm, ArrayList<Item> listOfItems) {
+        for (Item listOfItem : listOfItems) {
+            if (searchTerm.equalsIgnoreCase(listOfItem.getName())) {
+                heldItem = listOfItem;
+                heldItemName = heldItem.getName();
                 heldItemDesc = heldItem.getDescription();
-                return listOfItems.get(i);
+                return listOfItem;
             }
         }
         System.out.println("! Type in the correct item.");
         return null;
     }
 
-    private void showAllItemInInventory() {
+    private Treat searchAndHoldTreat(String searchTerm, ArrayList<Treat> listOfTreats) {
+        for (Treat listOfTreat : listOfTreats) {
+            if (searchTerm.equalsIgnoreCase(listOfTreat.getName())) {
+                heldTreat = listOfTreat;
+                heldTreatName = heldTreat.getName();
+                heldTreatDesc = heldTreat.getDescription();
+                return listOfTreat;
+            }
+        }
+        System.out.println("! Type in the correct item.");
+        return null;
+    }
+
+    private void showAllItemsInInventory() {
         inventoryItems = "";
-        for (int i = 0; i <= inventory.size() - 1; i++) {
-            inventoryItems += indent2 + inventory.get(i).getItem_name() + ",\n";
+        for (int i = 0; i <= itemInventory.size() - 1; i++) {
+            inventoryItems += indent2 + itemInventory.get(i).getName() + ",\n";
+        }
+    }
+
+    private void showAllTreatsInInventory() {
+        inventoryTreats = "";
+        for (int i = 0; i <= treatInventory.size() - 1; i++) {
+            inventoryTreats += indent2 + treatInventory.get(i).getName() + ",\n";
         }
     }
 
     private void showAllItemInCurrentMap() {
         visibleItems = "";
         for (int i = 0; i <= currentMap.getItems().size() - 1; i++) {
-            visibleItems += indent2 + currentMap.getItems().get(i).getItem_name() + ",\n";
+            visibleItems += indent2 + currentMap.getItems().get(i).getName() + ",\n";
+        }
+    }
+
+    private void showAllTreatsInCurrentMap() {
+        visibleTreats = "";
+        for (int i = 0; i <= currentMap.getTreats().size() - 1; i++) {
+            visibleTreats += indent2 + currentMap.getTreats().get(i).getName() + ",\n";
         }
     }
 

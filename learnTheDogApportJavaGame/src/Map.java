@@ -111,7 +111,7 @@ public class Map {
 
     public static Map getLocation(String locationInput) { // metod för att skicka ut den plats som spelaren vill gå till
         for (Map location : locations) {
-            if (location.name.equals(locationInput.toLowerCase())) { // söker efter platsnamn och skickar ut objektet som matchar från arrayen till spelet
+            if (location.name.equalsIgnoreCase(locationInput.toLowerCase())) { // söker efter platsnamn och skickar ut objektet som matchar från arrayen till spelet
                 return location;
             }
         }
