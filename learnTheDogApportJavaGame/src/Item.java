@@ -10,25 +10,20 @@ public class Item {
 
     // RETURNERA BEROENDE PÅ
 
-    private String item_name;
+    private String itemName;
     private String description;
     private boolean canPickUp;
     private boolean isHidden;
 
-    public Item(String item_name, String description, boolean canPickUp, boolean isHidden) {
-        this.item_name = item_name;
+    public Item(String itemName, String description, boolean canPickUp, boolean isHidden) {
+        this.itemName = itemName;
         this.description = description;
         this.canPickUp = canPickUp;
         this.isHidden = isHidden;
     }
 
-<<<<<<< HEAD
     public String getItemName() {
         return itemName;
-=======
-    public String getItem_name() {
-        return item_name;
->>>>>>> 7a19397abff63d3ebed2463cb6d46782e1bef76d
     }
 
     public String getDescription() {
