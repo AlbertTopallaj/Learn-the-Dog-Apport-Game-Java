@@ -29,15 +29,17 @@ public class NPC {
             new NPC(
 
                     "Agneta",
-                    "Vilken söt hund, du kanske borde fråga gubben i kiosken om en köttbulle att mata hunden med."
+                    "Vilken söt hund, du kanske borde fråga gubben i kiosken om en köttbulle att mata \n" +
+                            "hunden med."
 
             ),
 
             new NPC(
 
                     "Glenn",
-                    "Nämen hallå där, du får mig att minnas tillbaka från när jag hade min hund. " +
-                            "Jag kastade apport hela tiden med den, jag minns att min hund sprang extra bra om det var en pinne som kastades"
+                    "Nämen hallå där, du får mig att minnas tillbaka från när jag hade min hund. \n" +
+                            "Jag kastade apport hela tiden med den, jag minns att min hund sprang extra bra om \n" +
+                            "det var en pinne som kastades"
             ),
 
             new NPC(
