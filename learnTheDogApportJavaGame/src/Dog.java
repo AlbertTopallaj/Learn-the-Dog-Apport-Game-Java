@@ -16,9 +16,10 @@ public class Dog {
 
     //ArrayList<String> Food = new ArrayList<String>();
     int apportThresholdTry = 15; // Minimum för att försöka apport
-    Random rn = new Random(); //Genrera ett random nummer
-    int randomMagicNumberFactor = rn.nextInt(10) + 1;
+    //Random rn = new Random(); //Genrera ett random nummer
+    //int randomMagicNumberFactor = rn.nextInt(10) + 1;
     int happiness;
+    int minApportThreshold = 5
 
 
     public void addFood(Treat treat) {
@@ -38,47 +39,78 @@ public class Dog {
 
 
     public boolean winThreshold() {
-        if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
-            System.out.println("Hunden lyckades med apport!");
-            return true;
-        } else {
-            System.out.println("Tyvärr så lyckades du inte att få hunden att hämta pinnen");
-            return false;
-        }
-
+        Random rn = new Random(); //Genrera ett random nummer
+        int randomMagicNumberFactor = rn.nextInt(10) + 1;
+        if ((randomMagicNumberFactor + happiness) > minApportThreshold) {
+            if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
+                return true;
+            } else {
+                return false;
+            }
+        } else return false;
     }
 
 
     // Ändra namn till searchForHiddenItems & searchForHiddenTreats
     // Ändra så att funktionerna returnerar en Arraylist<Item> med bara alla items som är hidden från den arraylist som passeras in i funktionen. Gör detsamma för Treats.
 
-        //Search funktion för items
-        public void searchItem(Map map) {
-            System.out.println("Du söker igenom rummet");
+    //Search funktion för items
+    public void searchHiddenItem(ArrayList<String> list, String isHidden, String Item) {
+        ArrayList<String> items = new ArrayList<>();
+        ArrayList<String> hiddenItems = new ArrayList<>();
 
-            if (Map.items == null) {
-                System.out.println("Du hittar inget av intresse!");
-            } else {
-                System.out.println("Du hittar följande saker:");
-                for (Item i : Map.items); {
-                    System.out.println("- " + Map.items + ": " + Map.description);
-                }
-                }
+        for (String item : list) {
+            if (item.equals(isHidden)) {
+                hiddenItems.add(item);
+            }
+            if (item.equals((Item))) {
+                items.add(item);
             }
 
+            ArrayList<String> itemResult = items(Map.getItems());
+            ArrayList<String> hiddenResult = hiddenItems(Map.getItems(), isHidden);
 
-            // Search funktion för treats
-            public void searchTreat(Map map) {
-                System.out.println("Du söker igenom rummet");
+                /*if (Map.items == null) {
+                    System.out.println("Du hittar inget av intresse!");
+                } else {
+                    System.out.println("Du hittar följande saker:");
+                    for (Item i : Map.items) ;
+                    {
+                        System.out.println("- " + Map.items + ": " + Map.description);
+                    }
+                }*/
+        }
+    }
+
+
+    // Search funktion för treats
+    public void searchHiddenTreat(ArrayList<String> list, String isHidden, String Treat) {
+        ArrayList<String> treats = new ArrayList<>();
+        ArrayList<String> hiddenTreats = new ArrayList<>();
+
+        for (String treat : list) {
+            if (treat.equals(isHidden)) {
+                hiddenTreats.add(treat);
+            }
+            if (treat.equals((Treat))) {
+                treats.add(treat);
+            }
+
+            ArrayList<String> treatResult = treats(Map.getTreats());
+            ArrayList<String> hiddenTreatResult = hiddenTreats(Map.getTreats(), isHidden);
+                    
+                /*System.out.println("Du söker igenom rummet");
 
                 if (Map.treats == null) {
                     System.out.println("Du hittar inget av intresse!");
                 } else {
                     System.out.println("Du hittar följande saker:");
-                    for (Treat treat : Map.treats) ; {
+                    for (Treat treat : Map.treats) ;
+                    {
                         System.out.println("- " + Map.treats + ": " + Map.description);
-                    }
-                }
-            }
+                    }*/
         }
-        //gör en liknande för treats me
+    }
+}
+    }
+//gör en liknande för treats me
