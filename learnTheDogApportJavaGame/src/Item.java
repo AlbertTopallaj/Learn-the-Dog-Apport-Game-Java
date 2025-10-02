@@ -22,7 +22,7 @@ public class Item {
         this.isHidden = isHidden;
     }
 
-    public String getItem_name() {
+    public String getItemName() {
         return itemName;
     }
 
@@ -38,7 +38,7 @@ public class Item {
         return isHidden;
     }
 
-    // Statisk klass med alla spelobjekt
+
     public static Item[] items = {
             new Item(
                     "ledtråd_mata",
@@ -83,7 +83,7 @@ public class Item {
     public static Item getItem(String itemInput) { // Användaren skriver in itemets namn och plockar då om det
         // Ta in en string, returnera item från rätt lista
         for (Item item : items) {
-            if (item.getItem_name().equals(itemInput.toLowerCase())) {
+            if (item.getItemName().equals(itemInput.toLowerCase())) {
 
                 return item;
 
