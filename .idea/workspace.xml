@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0538cd2-d2ae-4630-b310-bc7347786e4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Dog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnTheDogApportJavaGame/src/Treat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game$playerStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game$playerStates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/NPC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/NPC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Treat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learnTheDogApportJavaGame/Treat.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +58,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Johan/Desktop/javakurs/Learn-the-Dog-Apport-Game-Java",
+    "last_opened_file_path": "C:/Users/Gabriel/IdeaProjects/Grupp3/Learn-the-Dog-Apport-Game-Java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

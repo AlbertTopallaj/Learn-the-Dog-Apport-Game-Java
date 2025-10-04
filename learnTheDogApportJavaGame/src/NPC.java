@@ -63,13 +63,12 @@ public class NPC {
                     "Hallå då, hunden ser rätt så hungrig ut, ge den lite mat vetja."
 
             )
-
     };
 
     public static NPC getNPC(String npcInput) {
 
         for (NPC npc : npcs) {
-            if (npc.name.equals(npcInput.toLowerCase())) {
+            if (npc.name.equalsIgnoreCase(npcInput.toLowerCase())) {
                 return npc;
             }
         }

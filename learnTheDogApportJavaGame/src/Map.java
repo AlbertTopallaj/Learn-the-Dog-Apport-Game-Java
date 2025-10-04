@@ -8,12 +8,6 @@ public class Map {
     public ArrayList<Treat> treats;
     public ArrayList<NPC> NPCs;
 
-    Map(String name, String description, ArrayList<Item> items) {
-        this.name = name;
-        this.description = description;
-        this.items = items;
-    }
-
     Map(String name, String description, ArrayList<Item> items, ArrayList<Treat> treats, ArrayList<NPC> NPCs) {
         this.name = name;
         this.description = description;

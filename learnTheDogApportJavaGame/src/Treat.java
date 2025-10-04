@@ -23,6 +23,10 @@ public class Treat {
         return description;
     }
 
+    public Boolean getIsHidden(){
+        return isHidden;
+    }
+
     public static Treat[] treatArray = {
 
             new Treat(
