@@ -37,14 +37,14 @@ public class Item {
     // Statisk klass med alla spelobjekt
     public static Item[] items = {
             new Item(
-                    "ledtråd_mata",
+                    "ledtråd-mat",
                     "Hunden är hungrig, testa att mata hunden med något gott!",
                     false,
                     false
             ),
 
             new Item(
-                    "ledtråd_köttbullar",
+                    "ledtråd-köttbullar",
                     "Hunden älskar köttbullar, Tant Agda brukar ha de.",
                     false,
                     false
@@ -52,7 +52,7 @@ public class Item {
 
             new Item(
 
-                    "ledtråd_apport",
+                    "ledtråd-apport",
                     "Kommandot apport är något älskar att utföra. Men alla hundar kan inte det. Hur ska du lösa det?",
                     false,
                     true

@@ -3,12 +3,24 @@ import java.util.Random;
 
 public class Dog {
 
-    public int apportThresholdTry = 40;
+    public int apportThresholdWin = 40;
     public int happiness = 0;
-    public int minApportThreshold = 15; // Minimum för att försöka apport
+    public int minApportThresholdTry = 15; // Minimum för att försöka apport
+    Random rn = new Random(); //Genrera ett random nummer
+    int randomMagicNumberFactor = rn.nextInt(10) + 1;
 
-    public int getHappniess(){
+    public int getHappiness(){
         return happiness;
+    }
+
+    public int getHappinessPercentage(){
+        randomMargin();
+        double happinessPercentage = ((double)(happiness + randomMagicNumberFactor) / (double) apportThresholdWin * 100);
+        return (int) happinessPercentage;
+    }
+
+    public void randomMargin(){
+        randomMagicNumberFactor = rn.nextInt(10) + 1;
     }
 
     public void addHappiness(Treat treat) {
@@ -23,10 +35,9 @@ public class Dog {
     }
 
     public boolean winThreshold() {
-        Random rn = new Random(); //Genrera ett random nummer
-        int randomMagicNumberFactor = rn.nextInt(10) + 1;
-        if ((randomMagicNumberFactor + happiness) > minApportThreshold) {
-            if ((randomMagicNumberFactor + happiness) > apportThresholdTry) {
+        randomMargin();
+        if ((randomMagicNumberFactor + happiness) > minApportThresholdTry) {
+            if ((randomMagicNumberFactor + happiness) > apportThresholdWin) {
                 return true;
             } else {
                 return false;

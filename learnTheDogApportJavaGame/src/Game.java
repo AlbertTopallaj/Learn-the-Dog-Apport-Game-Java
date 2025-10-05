@@ -12,16 +12,15 @@ public class Game {
 
 
     // parameters and containers.
-    private final int inventorySpace = 10;
-    ArrayList<Item> itemInventory = new ArrayList<>(inventorySpace);          // All other items the player is carrying that are not edible.
-    ArrayList<Treat> treatInventory = new ArrayList<>();            // Dog treats that the player carries, will be displayed in inventory in game.
-    ArrayList<Map> maps = new ArrayList<>();                // All maps of the game.
+    ArrayList<Item> itemInventory = new ArrayList<>();          // All other items the player is carrying that are not edible.
+    ArrayList<Treat> treatInventory = new ArrayList<>();        // Dog treats that the player carries, will be displayed in inventory in game.
+    ArrayList<Map> maps = new ArrayList<>();                    // All maps of the game.
     Dog dog = new Dog();
     Scanner scanner = new Scanner(System.in);
     String userInput = "";
-    int textSpeed = 40;
+    int textSpeed = 60;
     int walkingSpeed = 700;
-    int textSpeedMultiplier = 10;
+    int textSpeedMultiplier = 2;
 
     // objects actively in player use.
     Map currentMap;
@@ -32,15 +31,14 @@ public class Game {
 
 
     // text formatting and templates.
-
     String oneLine = "\n";
     String twoLine = "\n\n";
     String threeLine = "\n\n\n";
-    //String indent = "    "; //Deprecated variable, not used but might use later.
     String indent2 = "  - ";
     String lineSeparator = "】============================================================================================【";
 
-    String storyIntroduction = "-DETTA ÄR ETT OFÄRDIGT PROJECT MED TEMPORÄRA VARIABLAR PÅ PLATS OCH BLANDAT SPRÅK-" + oneLine + "\nDu står med koppel i handen. Din hund är lat och ledsen." +
+    String storyIntroduction = "-DETTA PROJEKT HAR UTRYMME FÖR FÖRBÄTTRINGAR FRAMÖVER.-" + twoLine + "Introduktion:" + twoLine +
+            "Du står med koppel i handen. Din hund är lat och ledsen." +
             "\nKan den där hunden ens några tricks alls tänker du." +
             "\nMen då får du idén... Apport!" +
             "\nKan man ens lära denna hund att göra apport?";
@@ -73,23 +71,24 @@ public class Game {
     String inventoryHeader = "[VÄSKA]:" + oneLine;
     String inspectingHeader = "[UPP PLOCKAT]: ";
     String locationHeader = "Din Nuvarande Plats: ";
+    String errorMessage = "";
 
     String commandsInfo =
             """
-                     [HELP]:
+                     [HELP/HJÄLP]:
                      HUVUDMÅLET MED SPELET:
                          Lär din hund att göra apport.
                          \s
                      ============================================================================================
                      COMMAND INFO:
                          \s
-                         * Plocka Upp [Objekt Namn] - \nLåter spelaren se närmare på ett objekt i scenen och inspektera det.
+                         * Plocka Upp [Objekt Namn] - \nLåter spelaren se närmare på ett objekt i scenen och inspektera det. \nFör att senare använda det så måste först använda "Hund" kommandot. \nDet går inte att plocka upp grejer från din väska, de går bara att använda.
                      ____________________________________________________________________________________________
                          \s
                          * Väska - \nVisar en lista av saker som spelaren bär på.
                      ____________________________________________________________________________________________
                          \s
-                         * Gå Till [Plats Namn] - \nÄndrar din nuvarande position till det som skrivs in. \nPlatser som man kan besöka går att se i diskriptionerna av den plats man befinner sig på redan.\nDe är markerade med "[]" markörer.
+                         * Gå Till [Plats Namn] - \nÄndrar din nuvarande position till det som skrivs in. \nPlatser som man kan besöka går att se i diskriptionerna av den plats man befinner sig på redan.\nDe är markerade med "[]" markörer.\n\n Hunden förlorar happiness när man går.
                      ____________________________________________________________________________________________
                          \s
                          * Tala Med [NPC Namn] - \nLåter en NPC att prata med dig, De kanske hjälper dig att lyssna på vad de har att säga.
@@ -113,6 +112,7 @@ public class Game {
         DOG, // Interaction menu for the dog. Feed, Search and Fetch.
         SEARCH, // Searches the current location for hidden items.
         FEED_DOG, // Displays stats for when the dog has eaten a treat.
+        FETCH,
         EXIT // last step before exiting the game.
     }
 
@@ -149,64 +149,65 @@ public class Game {
         switch (currentState) {
             //INITIATES START VARIABLES HERE.
             case playerStates.START:
-                System.out.println("TEACH THE DOG APPORT THE GAME!\n\n");
+                System.out.println("TEACH THE DOG FETCH THE GAME!\n\n");
 
                 maps = new ArrayList<>(Arrays.asList(Map.locations));
 
                 //sets the current player location.
                 currentMap = maps.getFirst();
                 //Updates a bunch of String variables that prepares context to be displayed.
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
                 showAllNPCsInCurrentMap();
                 //Enters IDLE state.
+                animateText(storyIntroduction);
                 storyIntroduction = "";
                 currentState = playerStates.IDLE;
 
                 //break;
             case playerStates.IDLE:
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
                 showAllNPCsInCurrentMap();
                 showAllItemsInInventory();
+                showAllTreatsInInventory();
                 updateTitles();
-                //if (visibleNPCs) //< CHECK for NPCs and change commandOptions.
 
                 commandOptions = """
                         [SKRIV KOMMANDON]:
-                        > Hjälp
+                        > Help
                         > Plocka upp [Objekt Namn]
                         > Väska
                         > Gå till [Plats Namn]
                         > Tala Med [NPC Namn]
                         > Hund""";
                 query = "Vad vill du göra?: ";
-                topHalf = storyIntroduction + twoLine + locationHeader + placeName + placeDescription + visibleHeader + visibleItems + hiddenItem + visibleTreats + hiddenTreats + visibleNPCs + HUDLine;
+                topHalf =  twoLine + locationHeader + placeName + placeDescription + visibleHeader + visibleItems + hiddenItem + visibleTreats + hiddenTreats + visibleNPCs + HUDLine;
                 bottomHalf = threeLine + commandOptions + twoLine;
 
                 //compiling UI
-                textToBeDisplayed = topHalf + bottomHalf + query;
+                textToBeDisplayed = topHalf + bottomHalf + errorMessage + query;
                 break;
+
             case playerStates.HELP:
                 commandOptions = """
                         [SKRIV KOMMANDON]:
                         > Inställningar
-                        > Återvänd""";
+                        > Tillbaka""";
 
                 bottomHalf = threeLine + commandOptions + twoLine + twoLine;
                 //compiling UI
-                textToBeDisplayed = commandsInfo + HUDLine + bottomHalf + query;
+                textToBeDisplayed = commandsInfo + HUDLine + bottomHalf + errorMessage + query;
                 break;
+
             case playerStates.SETTING:
                 System.out.println("INSTÄLLNINGAR:");
                 textSpeed = askForTextSpeed();
                 walkingSpeed = askForWalkSpeed();
                 currentState = playerStates.IDLE;
                 break;
+
             case playerStates.INSPECT:
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
-                showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
-                showAllItemsInInventory();
                 if (heldItem != null) {
                     if (heldItem.canPickUp()) {
                         commandOptions = """
@@ -217,7 +218,7 @@ public class Game {
                     } else {
                         commandOptions = """
                                 [SKRIV KOMMANDON]:
-                                > Återvänd""";
+                                > Tillbaka""";
                         reactionToPickingUp = "";
                         query = "Vad vill du göra?: ";
                     }
@@ -228,81 +229,96 @@ public class Game {
                             Ja eller Nej?""";
                     query = "Gör ditt val: ";
                 }
-
                 //compiling UI
-                textToBeDisplayed = inspectingHeader + heldItemName + heldTreatName + oneLine + indent2 + heldItemDesc + heldTreatDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + query;
+                textToBeDisplayed = inspectingHeader + heldItemName + heldTreatName + oneLine + indent2 + heldItemDesc + heldTreatDesc + twoLine + HUDLine + twoLine + commandOptions + threeLine + twoLine + errorMessage + query;
                 break;
 
             case playerStates.INVENTORY:
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
                 showAllItemsInInventory();
+                showAllTreatsInInventory();
                 // changes command options displayed depending on which inventory is empty.
                 if (itemInventory.isEmpty() && (treatInventory.isEmpty())) // if both are filled.
                 {
                     commandOptions = """
                             [SKRIV KOMMANDON]:
                             > Plocka Upp [Objekt Namn]
-                            > Återvänd""";
-                } else if (itemInventory.isEmpty()) {   // if only treatInventory.
+                            > Tillbaka""";
+                } else if (!treatInventory.isEmpty()) {   // if only treatInventory.
                     commandOptions = """
                             [SKRIV KOMMANDON]:
                             > Plocka Upp [Objekt Namn]
                             > Mata Hund [Objekt Namn]
-                            > Återvänd""";
-                } else {
+                            > Tillbaka""";
+                } else{
                     commandOptions = """
                             [SKRIV KOMMANDON]:
                             > Plocka Upp [Objekt Namn]
-                            > Återvänd""";
+                            > Tillbaka""";
                 }
 
                 query = "Vad vill du göra?: ";
                 topHalf = visibleHeader + visibleItems + visibleTreats + HUDLine + twoLine + reactionToPickingUp + inventoryHeader + inventoryItems + inventoryTreats + HUDLine;
-                bottomHalf = threeLine + commandOptions + twoLine + query;
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
                 textToBeDisplayed = topHalf + bottomHalf;
                 break;
             case playerStates.TALK:
                 NPCTalking();
                 commandOptions = """
                         [SKRIV KOMMANDON]:
-                        > Återvänd""";
+                        > Tillbaka""";
                 query = "Vad vill du göra?: ";
-                bottomHalf = threeLine + commandOptions + twoLine + query;
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
                 textToBeDisplayed = bottomHalf;
                 currentState = playerStates.IDLE;
                 break;
 
             case playerStates.DOG:
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
                 commandOptions = """
                         [SKRIV KOMMANDON]:
                         > Mata Hund [Objekt Namn]
-                        > Leta
+                        > Sök
                         > Apport
-                        > Återvänd""";
-                topHalf = "[HUND]: " + "Glädje Nivå: " + dog.getHappniess();
-                bottomHalf = threeLine + commandOptions + twoLine + query;
+                        > Tillbaka""";
+                topHalf = "[HUND]: " + "Glädje Nivå: " + dog.getHappinessPercentage() + "%";
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
                 textToBeDisplayed = topHalf + threeLine + "Hund -Baoww bawW!" + twoLine + "[TIDIGARE GÖMDA FYND]: " + twoLine + hiddenItem + hiddenTreats + HUDLine + twoLine + inventoryHeader + inventoryItems + inventoryTreats + HUDLine + bottomHalf;
                 break;
             case playerStates.SEARCH:
                 commandOptions = """
                         [SKRIV KOMMANDON]:
-                        > Återvänd""";
-                topHalf = "[HUND LETAR]: ";
-                animateText("Din hund undersöker området och letar efter gömda items och treats..." + threeLine);
+                        > Tillbaka""";
+                animateText("[HUND LETAR]: " + threeLine + "Din hund undersöker området och letar efter gömda items och treats..." + threeLine);
                 waitForSeconds(1200);
-                bottomHalf = threeLine + commandOptions + twoLine + query;
-                textToBeDisplayed = topHalf + bottomHalf;
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
+                textToBeDisplayed = bottomHalf;
                 break;
             case playerStates.FEED_DOG:
-                animateText("Chow.. Chow..." + twoLine);
-                animateText("[HUND]: " + "Glädje Nivå: " + dog.getHappniess() + threeLine);
+                commandOptions = """
+                        [SKRIV KOMMANDON]:
+                        > Tillbaka""";
 
-                textToBeDisplayed = "Hunden åt " + heldTreat.getName();
+                animateText("Chow.. Chow..." + twoLine + twoLine);
+                animateText("[HUND]: " + "Glädje Nivå: " + dog.getHappinessPercentage() + "%" + threeLine);
+                animateText("Hunden åt " + heldTreat.getName()+" och blev " + heldTreat.getEffect() + " mer gladare!" + twoLine);
+                waitForSeconds(800);
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
+                textToBeDisplayed = bottomHalf;
+                break;
+            case playerStates.FETCH:
+                animateText("Du kallar på kommandot apport!" + twoLine + twoLine);
+                //animateText("Chow.. Chow..." + twoLine + twoLine);
+                bottomHalf = threeLine + commandOptions + twoLine + errorMessage + query;
+                textToBeDisplayed = bottomHalf;
                 break;
             case playerStates.EXIT:
+                animateText("Din hund lärde sig apport" + twoLine + twoLine);
+                waitForSeconds(800);
+                animateText("Spelet är över. \n Bra jobbat!" + twoLine + twoLine);
+                waitForSeconds(2000);
                 isRunning = false;
                 break;
         }
@@ -325,12 +341,14 @@ public class Game {
         switch (currentState) {
             case playerStates.IDLE:
                 previousState = currentState;
-                if (userInput.equalsIgnoreCase("hjälp")) {
+                if (userInput.equalsIgnoreCase("hjälp") || userInput.equalsIgnoreCase("help") ) {
                     //System.out.println("Played asked for help");
                     currentState = playerStates.HELP;
+                    errorMessage = "";
                     break;
                 } else if (userInput.equalsIgnoreCase("väska")) {
                     currentState = playerStates.INVENTORY;
+                    errorMessage = "";
                     break;
                 } else if (userInput.toLowerCase().contains("plocka upp ")) {
                     inspectItem();
@@ -340,26 +358,36 @@ public class Game {
                     break;
                 } else if (userInput.toLowerCase().contains("tala med ")) {
                     receiveMessagePack();
+                    errorMessage = "";
                     break;
 
                 } else if (userInput.equalsIgnoreCase("hund")) {
                     currentState = playerStates.DOG;
+                    errorMessage = "";
+                    break;
                 }
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen.\n";
                 break;
 
             case playerStates.HELP:
                 if (userInput.equalsIgnoreCase("inställningar")) {
                     currentState = playerStates.SETTING;
+                    errorMessage = "";
+                    break;
                 } else if (userInput.equalsIgnoreCase("återvänd") ||
                         userInput.equalsIgnoreCase("returnera") ||
                         userInput.equalsIgnoreCase("bak") ||
                         userInput.equalsIgnoreCase("tillbaka")) {
                     currentState = previousState;
+                    errorMessage = "";
                     break;
                 }
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen.\n";
+                break;
 
             case playerStates.INSPECT:
                 if (heldItem == null && heldTreat == null) {
+                    //Should not execute
                     System.out.println("ERROR: No item is being held...");
                     break;
                 }
@@ -374,6 +402,7 @@ public class Game {
                         userInput.equalsIgnoreCase("tillbaka")) {
                     reactionToPickingUp = "";
                     currentState = playerStates.IDLE;
+                    errorMessage = "";
                     break;
                 } else if (userInput.toLowerCase().contains("plocka upp ")) {
                     //if what comes after "inspect " matches any of the items on the map.
@@ -381,13 +410,16 @@ public class Game {
                     break;
                 } else if (userInput.toLowerCase().contains("mata hund ")) {
                     feedDog();
+                    errorMessage = "";
                     break;
                 }
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen.\n";
             case playerStates.MOVE:
-                //System.out.println("DUBUG: MOVE DID EXECUTE");
+                errorMessage = "";
                 break;
 
             case playerStates.SETTING:
+                errorMessage = "";
                 break;
 
             case playerStates.DOG:
@@ -397,31 +429,56 @@ public class Game {
                         userInput.equalsIgnoreCase("bak") ||
                         userInput.equalsIgnoreCase("tillbaka")) {
                     currentState = playerStates.IDLE;
+                    errorMessage = "";
                     break;
                 } else if (userInput.toLowerCase().contains("mata hund ")) {
                     feedDog();
                     currentState = previousState;
+                    errorMessage = "";
                     break;
-                } else if (userInput.toLowerCase().contains("leta")) {
+                } else if (userInput.toLowerCase().contains("apport")) {
+                    currentState = playerStates.FETCH;
+                    errorMessage = "";
+                    break;
+                } else if (userInput.toLowerCase().contains("sök")) {
                     dogSearch();
+                    errorMessage = "";
+                    break;
                 }
-            case playerStates.SEARCH:
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen.\n";
+                break;
+
+            case playerStates.SEARCH, playerStates.FEED_DOG:
                 if (userInput.equalsIgnoreCase("återvänd") ||
                         userInput.equalsIgnoreCase("returnera") ||
                         userInput.equalsIgnoreCase("bak") ||
                         userInput.equalsIgnoreCase("tillbaka")) {
                     currentState = previousState;
+                    errorMessage = "";
                     break;
+                }
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen.\n";
+                break;
+
+            case playerStates.FETCH:
+                Item pinneCheck = searchAndHoldItem("pinne",itemInventory);
+                if(pinneCheck != null){
+                    if(dog.winThreshold()){
+                        currentState = playerStates.EXIT;
+                        errorMessage = "";
+                        break;
+                    }
                 }
 
-            case playerStates.FEED_DOG:
                 if (userInput.equalsIgnoreCase("återvänd") ||
                         userInput.equalsIgnoreCase("returnera") ||
                         userInput.equalsIgnoreCase("bak") ||
                         userInput.equalsIgnoreCase("tillbaka")) {
                     currentState = previousState;
+                    errorMessage = "";
                     break;
                 }
+                errorMessage = "\n!Skriv in rätt kommando som visas av alternativen\n";
         }
     }
 
@@ -448,29 +505,35 @@ public class Game {
         if (itemSearched == null && treatSearched == null) {
             heldItem = null;
             heldTreat = null;
+            errorMessage = "\nDet där verkar inte finnas\n";
             return;
         }
         if (itemSearched != null) {
             heldItem = null;
-            System.out.println("DU KAN INTE MATA HUNDEN DET DÄR!\n");
+            newPage();
+            errorMessage = "\nDu kan tyvärr inte mata hunden det där.\n";
         } else {
             heldTreat = treatSearched;
+            treatInventory.remove(treatSearched);
             dog.addHappiness(heldTreat);
             currentState = playerStates.FEED_DOG;
+            errorMessage = "";
         }
     }
 
     private void pickFromItemOrTreat(playerStates previousState) {
         if (heldItem != null) { // IF AN ITEM IS INSPECTED
-            System.out.println("DEBUG: ITEM IN HAND...");
             if (heldItem.canPickUp()) {
                 if (userInput.toLowerCase().contains("nej")) {
                     currentState = previousState;
+                    errorMessage = "";
                     return;
                 }
                 if (userInput.toLowerCase().contains("ja")) {
                     pickUpItemFromMap();
                     currentState = playerStates.INVENTORY;
+                    errorMessage = "";
+                    return;
                 }
             } else {
                 if (userInput.equalsIgnoreCase("återvänd") ||
@@ -479,19 +542,24 @@ public class Game {
                         userInput.equalsIgnoreCase("tillbaka")) {
                     currentState = previousState;
                     heldItem = null; //resets held item.
+                    errorMessage = "";
+                    return;
                 }
             }
         } else { // IF A TREAT IS BEING INSPECTED.
-            System.out.println("DEBUG: TREAT IN HAND...");
             if (userInput.toLowerCase().contains("nej")) {
                 currentState = previousState;
+                errorMessage = "";
                 return;
             }
             if (userInput.toLowerCase().contains("ja")) {
                 pickUpTreatFromMap();
                 currentState = playerStates.INVENTORY;
+                errorMessage = "";
+                return;
             }
         }
+        errorMessage = "\nDu måste välja från alternativet Ja eller Nej..\n";
     }
 
     private void receiveMessagePack() {
@@ -510,7 +578,10 @@ public class Game {
             hiddenObjectsAreVisible = false;
             walkingAnimation();
             currentState = playerStates.MOVE;
+            errorMessage = "";
+            return;
         }
+        errorMessage = "\nhmm.. den plats ni skrev in finns inte tillgängligt.\n";
     }
 
     private void inspectItem() {
@@ -520,14 +591,22 @@ public class Game {
         if (itemSearched == null && treatSearched == null) {
             heldItem = null;
             heldTreat = null;
+            errorMessage = "\nDet du söker efter finns inte..\nSe till att det du försöker att plocka upp finns på din nuvarande plats.\n";
             return;
         }
         if (itemSearched != null) {
             heldItem = itemSearched;
             currentState = playerStates.INSPECT;
-        } else {
+            errorMessage = "";
+        } else if (treatSearched != null){
             heldTreat = treatSearched;
             currentState = playerStates.INSPECT;
+            errorMessage = "";
+        }
+        else{
+            heldItem = null;
+            heldTreat = null;
+            errorMessage = "\nDet du söker efter finns inte..\nSe till att det du försöker att plocka upp finns på din nuvarande plats.\n";
         }
     }
 
@@ -547,9 +626,10 @@ public class Game {
                 }
                 reactionToPickingUp = "\nDu plockade upp " + heldItemName + "!\n\n";
                 itemInventory.add(heldItem);
+                heldItem = null; //resets held item.
                 currentMap.getItems().remove(i);
                 maps.set(j, currentMap);
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllItemsInInventory();
                 updateTitles();
             }
@@ -567,6 +647,7 @@ public class Game {
                 }
                 reactionToPickingUp = "\nDu plockade upp " + heldTreatName + "!\n\n";
                 treatInventory.add(heldTreat);
+                heldTreat = null; //resets held item.
                 currentMap.getTreats().remove(i);
                 maps.set(j, currentMap);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
@@ -580,7 +661,7 @@ public class Game {
         for (Map map : maps) {
             if (searchTerm.equalsIgnoreCase(map.getName())) {
                 currentMap = map;
-                showAllItemInCurrentMap(hiddenObjectsAreVisible);
+                showAllItemsInCurrentMap(hiddenObjectsAreVisible);
                 showAllTreatsInCurrentMap(hiddenObjectsAreVisible);
                 showAllNPCsInCurrentMap();
                 return map;
@@ -600,7 +681,6 @@ public class Game {
                 return item;
             }
         }
-        //System.out.println("! Skriv in rätt namn på. Försök igen!");
         return null;
     }
 
@@ -609,13 +689,12 @@ public class Game {
             if (searchTerm.equalsIgnoreCase(treat.getName())) {
                 //heldTreat = treat;
                 heldTreatName = treat.getName();
-                heldTreatDesc = treat.getDescription();
+                heldTreatDesc = treat.getDescription() +" [Effekt: "+ treat.getEffect() + "]";
                 heldItemName = "";
                 heldItemDesc = "";
                 return treat;
             }
         }
-        //System.out.println("! Skriv in rätt namn på. Försök igen!");
         return null;
     }
 
@@ -632,7 +711,6 @@ public class Game {
                 return npc;
             }
         }
-        //System.out.println("! Skriv in rätt namn på. Försök igen!");
         return null;
     }
 
@@ -650,13 +728,13 @@ public class Game {
         }
     }
 
-    private void showAllItemInCurrentMap(boolean showHidden) {
+    private void showAllItemsInCurrentMap(boolean showHidden) {
         visibleItems = "";
         hiddenItem = "";
         if (!showHidden) {
             for (int i = 0; i < currentMap.getItems().size(); i++) {
                 if (currentMap.getItems().get(i).isHidden()) {
-                    hiddenItem += "[GÖMT FÖREMÅL]" + ",\n";
+                    hiddenItem += "[ETT GÖMT FÖREMÅL]" + ",\n";
                 } else {
                     visibleItems += "[SAK]" + indent2 + currentMap.getItems().get(i).getName() + ",\n";
                 }
@@ -678,7 +756,7 @@ public class Game {
         if (!showHidden) {
             for (int i = 0; i < currentMap.getTreats().size(); i++) {
                 if (currentMap.getTreats().get(i).getIsHidden()) {
-                    hiddenTreats += "[GÖMT FÖREMÅL]" + ",\n";
+                    hiddenTreats += "[ETT GÖMT FÖREMÅL]" + ",\n";
                 } else {
                     visibleTreats += "[MAT]" + indent2 + currentMap.getTreats().get(i).getName() + ",\n";
                 }
@@ -702,7 +780,6 @@ public class Game {
         for (int i = 0; i < currentMap.getNPCs().size(); i++) {
             visibleNPCs += "[NPC]" + indent2 + currentMap.getNPCs().get(i).getName() + ",\n";
         }
-
     }
 
     private void walkingAnimation() {
