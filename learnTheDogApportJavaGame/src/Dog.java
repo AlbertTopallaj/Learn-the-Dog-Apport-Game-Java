@@ -20,7 +20,7 @@ public class Dog {
     }
 
     public void randomMargin(){
-        randomMagicNumberFactor = rn.nextInt(10) + 1;
+        randomMagicNumberFactor = rn.nextInt(6) + 5;
     }
 
     public void addHappiness(Treat treat) {
