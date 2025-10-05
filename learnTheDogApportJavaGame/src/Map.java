@@ -44,7 +44,7 @@ public class Map {
                             "anslagstavla i kork ovanför byrån i hallen hänger en lapp med texten ledtråd-apport. \n" +
                             "Utanför ett fönster ser du din [trädgård].",
                     new ArrayList<Item>(Arrays.asList(
-                            Item.getItem("ledtråd-mat"),
+                            Item.getItem("ledtråd-apport"),
                             Item.getItem("Hundleksak")
                     )),
                     new ArrayList<Treat>(Arrays.asList(
